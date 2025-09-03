@@ -1,0 +1,27 @@
+.inputGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin-bottom: 1rem;
+}
+
+.label {
+	color: var(--vscode-input-foreground);
+	font-size: 1rem;
+	margin-bottom: 0.25rem;
+}
+
+.input {
+	background: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	border: 1px solid var(--vscode-input-border);
+	border-radius: 4px;
+	padding: 0.5rem;
+	font-size: 1rem;
+	transition: border-color 0.2s;
+}
+
+.input:focus {
+	border-color: var(--vscode-focusBorder);
+	outline: none;
+}
