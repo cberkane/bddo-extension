@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { Injector } from "./injector";
+import { Injector } from "./helpers/injector";
 
 export function init(context: vscode.ExtensionContext) {
 	Injector.setContext(context);

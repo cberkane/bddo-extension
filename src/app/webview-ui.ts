@@ -13,13 +13,9 @@ export class WebviewUI {
 		webview: vscode.Webview
 	): string {
 		const htmlPath = path.join(context.extensionPath, "out", "webview", "index.html");
-		console.log("htmlPath", htmlPath);
-		
-		const webviewRoot = vscode.Uri.file(
-			path.join(context.extensionPath, "out", "webview")
-		);
-		const baseUri = webview.asWebviewUri(webviewRoot);
+		const webviewRoot = vscode.Uri.file(path.join(context.extensionPath, "out", "webview"));
 
+		const baseUri = webview.asWebviewUri(webviewRoot);
 		const html = fs.readFileSync(htmlPath, "utf8");
 		return html.replace(/"(\/assets\/[^"]+)"/g, (_, src) => `"${baseUri}${src}"`);
 	}

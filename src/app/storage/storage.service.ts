@@ -2,45 +2,45 @@ import * as path from "path";
 import * as vscode from "vscode";
 import * as fs from "fs";
 
-// TODO: refactor error messages
 export class StorageService {
 	private context: vscode.ExtensionContext;
+
 	constructor(context: vscode.ExtensionContext) {
 		this.context = context;
 	}
 
-	initJsonFile() {
+	initJsonFile(): void {
 		const storageDir = this.context.globalStorageUri.fsPath;
-		const filePath = this.getStorageFilePath();
+		const filePath = this.getStorageFilePath("bddo-data.json"); // TODO: externaliser dans dotenv
 
 		if (!fs.existsSync(filePath)) {
+			const structure = JSON.stringify([], null, 2);
 			fs.mkdirSync(storageDir, { recursive: true });
-			fs.writeFileSync(filePath, JSON.stringify([]), "utf8");
+			fs.writeFileSync(filePath, structure, "utf8");
 		}
 	}
 
-	// TODO: add fileName parameter
-	protected getStorageFilePath(): string {
+	private getStorageFilePath(fileName: string): string {
 		const storageDir = this.context.globalStorageUri.fsPath;
-		return path.join(storageDir, "bddo-data.json");
+		return path.join(storageDir, fileName);
 	}
 
-	protected readJsonData<T>(): T | undefined {
-		const filePath = this.getStorageFilePath();
+	protected readJsonData<T>(fileName: string): T | undefined {
 		try {
+			const filePath = this.getStorageFilePath(fileName);
 			const data = fs.readFileSync(filePath, "utf8");
 			return JSON.parse(data) as T;
 		} catch (error) {
-			vscode.window.showErrorMessage("");
+			vscode.window.showErrorMessage("Error reading JSON data");
 		}
 	}
 
-	protected saveJsonData<T>(data: T): void {
-		const filePath = this.getStorageFilePath();
+	protected saveJsonData<T>(fileName: string, data: T): void {
 		try {
+			const filePath = this.getStorageFilePath(fileName);
 			fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
 		} catch (error) {
-			console.error("Erreur lors de la sauvegarde du fichier JSON:", error);
+			vscode.window.showErrorMessage("Error saving JSON data");
 		}
 	}
 }
