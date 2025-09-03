@@ -1,6 +1,8 @@
+import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
-import * as fs from "fs";
+
+import { environment } from "../environment";
 
 export class StorageService {
 	private context: vscode.ExtensionContext;
@@ -11,7 +13,7 @@ export class StorageService {
 
 	initJsonFile(): void {
 		const storageDir = this.context.globalStorageUri.fsPath;
-		const filePath = this.getStorageFilePath("bddo-data.json"); // TODO: externaliser dans dotenv
+		const filePath = this.getStorageFilePath(environment.mainFileName); 
 
 		if (!fs.existsSync(filePath)) {
 			const structure = JSON.stringify([], null, 2);

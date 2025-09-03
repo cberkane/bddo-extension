@@ -1,12 +1,13 @@
-import * as vscode from "vscode";
 import { v4 as uuid } from "uuid";
+import * as vscode from "vscode";
 
-import { StorageService } from "./storage.service";
-import { Response } from "../types/response";
+import { environment } from "../environment";
 import { Feature } from "../types/feature";
+import { Response } from "../types/response";
+import { StorageService } from "./storage.service";
 
 export class FeatureStorageService extends StorageService {
-	private fileName = "bddo-data.json";
+	private fileName = environment.mainFileName;
 
 	loadFeatures(): Response<Feature[]> {
 		try {
@@ -26,8 +27,17 @@ export class FeatureStorageService extends StorageService {
 
 	saveFeature(feature: Omit<Feature, "uuid">): Response<Feature[]> {
 		try {
-			const features = this.readJsonData<Feature[]>(this.fileName) ?? [];
-			const newFeature = { uuid: uuid(), ...feature };
+			const features = this.readJsonData<Feature[]>(this.fileName);
+			if (!features) {
+				return {
+					success: false,
+					error: "No features found",
+				};
+			}
+			const newFeature = {
+				...feature,
+				uuid: uuid(),
+			};
 			const updatedFeatures = [newFeature, ...features];
 			this.saveJsonData<Feature[]>(this.fileName, updatedFeatures);
 			return {
@@ -69,9 +79,17 @@ export class FeatureStorageService extends StorageService {
 	}
 
 	deleteFeature(uuid: string): Response<Feature[]> {
+		console.log(`Deleting feature with uuid: ${uuid}`);
 		try {
 			const features = this.readJsonData<Feature[]>(this.fileName);
-			const newFeatures = features ? features.filter((feature) => feature.uuid !== uuid) : [];
+			if (!features) {
+				return {
+					success: false,
+					error: "No features found",
+				};
+			}
+
+			const newFeatures = features.filter((feature) => feature.uuid !== uuid);
 			this.saveJsonData<Feature[]>(this.fileName, newFeatures);
 			return {
 				data: newFeatures,

@@ -29,6 +29,7 @@ const FeatureList = ({ features }: FeatureListProps) => {
                 {features.map(feature => (
                     <li key={feature.uuid}>
                         <FeatureItem
+                            key={feature.uuid}
                             feature={feature}
                             onEdit={(event) => editFeature(event)}
                             onDelete={() => deleteFeature(feature.uuid)}

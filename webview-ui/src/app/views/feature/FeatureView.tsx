@@ -8,26 +8,28 @@ import Dialog from "@/app/components/shared/Dialog/Dialog";
 import useFeatureLoad from "@/app/hooks/useFeatureLoad";
 import Header from "@/app/components/shared/Header/Header";
 
-import Edit from "./../../../assets/svg/edit.svg?react";
-import Plus from "./../../../assets/svg/plus.svg?react";
+import Edit from "@/assets/svg/edit.svg?react";
+import Plus from "@/assets/svg/plus.svg?react";
 
 const FeatureView = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const { features } = useFeatureLoad(); // TODO: include errors
+    const { features } = useFeatureLoad();
 
     return (
         <>
-            <Header title="Features" icon={<Edit />} />
-            <FeatureList features={features} />
+            <>
+                <Header title="Features" icon={<Edit />} />
+                <FeatureList features={features} />
+                <Button onClick={() => setIsFormOpen(true)}
+                    className={styles.openButton}
+                    variant="rounded"
+                >
+                    <Plus style={{ width: '24px', height: '24px' }} />
+                </Button>
+            </>
             <Dialog open={isFormOpen} onClose={() => setIsFormOpen(false)}>
                 <FeatureForm onSuccess={() => setIsFormOpen(false)} />
             </Dialog>
-            <Button onClick={() => setIsFormOpen(true)}
-                className={styles.openButton} 
-                variant="rounded"
-            >
-                <Plus style={{ width: '24px', height: '24px' }} />
-            </Button>
         </>
     );
 };

@@ -1,5 +1,7 @@
 import { useRef, useEffect } from "react";
-import styles from "./Dialog.module.css"
+import styles from "./Dialog.module.css";
+
+import Close from "@/assets/svg/close.svg?react";
 
 
 type DialogProps = {
@@ -26,8 +28,8 @@ const Dialog = ({ open, children, onClose }: DialogProps) => {
     return (
         <dialog ref={dialogRef} onCancel={handleCancel} className={styles.dialog}>
             <div>
-                <button onClick={onClose} aria-label="Close" className={styles.dialogButton}>
-                    ×
+                <button onClick={onClose} className={styles.dialogButton}>
+                    <Close className={styles.dialogCloseIcon} />
                 </button>
             </div>
             {children}

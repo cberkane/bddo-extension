@@ -20,16 +20,17 @@ const FeatureForm = ({ onSuccess, feature, action = FeatureState.ADD_FEATURE }: 
             githubLink: formData.get("githubLink") as string
         }
 
-        if (feature && action === FeatureState.UPDATE_FEATURE ) {
+        if (feature && action === FeatureState.UPDATE_FEATURE) {
             window.vscode.postMessage({
                 command: FeatureState.UPDATE_FEATURE,
-                data: { uuid: feature.uuid, ...data }
+                data: { uuid: feature.uuid, updatedFeature: data }
             });
         } else {
             window.vscode.postMessage({
                 command: FeatureState.ADD_FEATURE,
-                data: { feature: { ...data, uuid: "" } }
+                data: { feature: { ...data } }
             });
+            event.currentTarget.reset();
         }
         onSuccess();
     }
