@@ -15,7 +15,7 @@
 		"commands": [
 			{
 				"command": "bddo.open",
-				"title": "Open BDDo"
+				"title": "open bddo"
 			}
 		]
 	},

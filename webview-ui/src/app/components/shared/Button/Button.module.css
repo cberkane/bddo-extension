@@ -9,3 +9,14 @@
 .button:hover {
   background-color: var(--vscode-button-hoverBackground);
 }
+
+
+/* VARIANTS */
+.rounded {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  padding: 0.5rem;
+}
+

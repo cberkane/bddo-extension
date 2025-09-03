@@ -1,0 +1,16 @@
+.headerContent {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.headerContent .icon {
+	transform: translateY(4px);
+	width: 24px;
+	height: 24px;
+}
+
+.headerContent .title {
+	font-size: 1.5rem;
+	font-weight: 400;
+}

@@ -1,1 +1,4 @@
-/* Here goes VSCode variables */
+/* Here goes general styling & VSCode variables */
+ul, li {
+    all: unset;
+}

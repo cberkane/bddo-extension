@@ -1,0 +1,27 @@
+.dialog {
+	background: var(--vscode-editorWidget-background);
+	color: var(--vscode-editorWidget-foreground);
+	border: 1px solid var(--vscode-editorWidget-border);
+	border-radius: 8px;
+	padding: 2rem;
+	min-width: 320px;
+}
+
+.dialogButton[aria-label="Close"] {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	border: none;
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+	font-size: 1.5rem;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.dialogButton[aria-label="Close"]:hover {
+	background: var(--vscode-button-hoverBackground);
+}
