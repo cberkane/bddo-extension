@@ -25,3 +25,14 @@
 	border-color: var(--vscode-focusBorder);
 	outline: none;
 }
+
+.asterisk {
+	color: var(--vscode-errorForeground);
+	margin-left: 0.25rem;
+}
+
+.error {
+	color: var(--vscode-errorForeground);
+	font-size: 0.875rem;
+	margin-top: -0.25rem;
+}

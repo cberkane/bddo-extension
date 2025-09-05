@@ -17,5 +17,5 @@ export type ViewChange = {
 
 export const ViewChangeContext = createContext<ViewChange>({
     view: { path: ViewPath.Features, params: {} },
-    setView: () => { },
+    setView: () => { }, // TODO: change function name !
 });

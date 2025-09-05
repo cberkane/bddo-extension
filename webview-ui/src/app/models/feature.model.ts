@@ -1,7 +1,9 @@
 export type Feature = {
     uuid: string;
     title: string;
-    githubLink: string;
+    createdAt: string;
+    completed: boolean;
+    project?: string;
 }
 
 export enum FeatureState {

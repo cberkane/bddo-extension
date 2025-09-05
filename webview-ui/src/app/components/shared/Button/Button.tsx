@@ -3,18 +3,20 @@ import styles from './Button.module.css';
 
 interface ButtonProps {
     children: React.ReactNode;
-    className?: string;
+    onClick?: () => void;
     type?: "button" | "submit" | "reset";
     variant?: "primary" | "outline" | "rounded";
-    onClick?: () => void;
+    className?: string;
+    disabled?: boolean;
 }
 
-export default function Button({ children, className, type, variant = "primary", onClick }: ButtonProps) {
+export default function Button({ children, onClick, type, variant = "primary", className, disabled = false }: ButtonProps) {
     return (
-        <button 
-            className={`${styles.button} ${styles[variant]} ${className}`} 
-            onClick={onClick} 
+        <button
+            className={`${styles.button} ${styles[variant]} ${className}`}
+            onClick={onClick}
             type={type}
+            disabled={disabled}
         >
             {children}
         </button>

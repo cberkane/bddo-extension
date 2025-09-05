@@ -2,29 +2,32 @@ import styles from './InputText.module.css';
 
 type TextInputProps = {
     name: string;
-    label?: string;
-    value?: string;
+    label: string;
+    placeholder: string;
     defaultValue?: string;
-    placeholder?: string;
     required?: boolean;
+    error?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
-const TextInput = ({ name, label, value, defaultValue, placeholder, required, onChange }: TextInputProps) => (
+const TextInput = ({ name, label, placeholder, defaultValue, required, error, onChange, ...rest }: TextInputProps) => (
     <div className={styles.inputGroup}>
-        {label && <label htmlFor={name} className={styles.label}>{label}</label>}
+        <label htmlFor={name} className={styles.label}>
+            {required && <span className={styles.asterisk}>*</span>} {label}
+        </label>
         <input
             type="text"
             autoComplete="off"
             className={styles.input}
             id={name}
             name={name}
-            value={value}
             defaultValue={defaultValue}
             placeholder={placeholder}
             required={required}
             onChange={onChange}
+            {...rest}
         />
+        {error && <span className={styles.error}>{error}</span>}
     </div>
 );
 

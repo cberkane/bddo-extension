@@ -21,8 +21,18 @@ type FeatureItemProps = {
 const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [showEditDialog, setShowEditDialog] = useState(false);
-
     const { setView } = useContext(ViewChangeContext);
+
+    const handleEdit = (event: React.MouseEvent) => {
+        event.stopPropagation();
+        setShowEditDialog(true);
+    };
+
+    const handleDelete = (event: React.MouseEvent) => {
+        event.stopPropagation();
+        setShowDeleteDialog(true);
+    };
+
     const gotoScenario = () => {
         setView({ path: "scenarios", params: { uuid: feature.uuid } });
     };
@@ -35,8 +45,8 @@ const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
                         <h3 className={styles.featureTitle}>{feature.title}</h3>
                     </div>
                     <div className={styles.featureActions}>
-                        <Edit className={styles.icon} onClick={() => setShowEditDialog(true)} />
-                        <Trash className={styles.icon} onClick={() => setShowDeleteDialog(true)} />
+                        <Edit className={styles.icon} onClick={handleEdit} />
+                        <Trash className={styles.icon} onClick={handleDelete} />
                     </div>
                 </div>
             </>
