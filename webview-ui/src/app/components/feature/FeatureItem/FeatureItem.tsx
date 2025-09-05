@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./FeatureItem.module.css";
 
 import { FeatureState, type Feature } from "@/app/models/feature.model";
@@ -8,6 +8,7 @@ import FeatureForm from "../FeatureForm/FeatureForm";
 
 import Edit from "@/assets/svg/edit.svg?react";
 import Trash from "@/assets/svg/trash.svg?react";
+import { ViewChangeContext } from "@/app/contexts/ViewChangeContext";
 
 
 type FeatureItemProps = {
@@ -21,10 +22,15 @@ const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [showEditDialog, setShowEditDialog] = useState(false);
 
+    const { setView } = useContext(ViewChangeContext);
+    const gotoScenario = () => {
+        setView({ path: "scenarios", params: { uuid: feature.uuid } });
+    };
+
     return (
         <>
             <>
-                <div className={styles.featureItem} key={feature.uuid}>
+                <div className={styles.featureItem} key={feature.uuid} onClick={gotoScenario}>
                     <div>
                         <h3 className={styles.featureTitle}>{feature.title}</h3>
                     </div>
