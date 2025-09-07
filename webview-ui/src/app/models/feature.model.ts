@@ -2,6 +2,7 @@ export type Feature = {
     uuid: string;
     title: string;
     createdAt: string;
+    updatedAt?: string;
     completed: boolean;
     project?: string;
 }

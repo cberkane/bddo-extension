@@ -5,6 +5,7 @@ import Button from "@/app/components/shared/Button/Button";
 import TextInput from "@/app/components/shared/InputText/InputText";
 import { getFormErrors } from "@/app/helpers/featureForm";
 import { FeatureState, type Feature } from "@/app/models/feature.model";
+import { addFeature, updateFeature } from "@/app/helpers/featureMessage";
 
 type FeaturePageFormProps = {
     onSuccess: () => void;
@@ -24,32 +25,35 @@ const FeatureForm = ({
     const handleInput = () => {
         if (!ref.current) return;
 
-        setIsValid(ref.current.checkValidity());
-        const newErrors = getFormErrors(ref.current);
-        setErrors(newErrors);
+        const currentErrors = getFormErrors(ref.current);
+        setErrors(currentErrors);
+        setIsValid(currentErrors.size === 0);
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
-        const data = {
+        const data: Partial<Feature> = {
             title: formData.get("title") as string,
             project: formData.get("project") as string | undefined,
         };
 
-        if (feature && action === FeatureState.UPDATE_FEATURE) {
-            window.vscode.postMessage({
-                command: FeatureState.UPDATE_FEATURE,
-                data: { uuid: feature.uuid, updatedFeature: data },
-            });
-        } else {
-            window.vscode.postMessage({
-                command: FeatureState.ADD_FEATURE,
-                data: { feature: { ...data } },
-            });
+        if (action === FeatureState.ADD_FEATURE) {
+            data.completed = false;
+            data.createdAt = new Date().toISOString();
+            addFeature(data);
+
             event.currentTarget.reset();
+            setIsValid(false);
+            setErrors(new Map());
         }
+
+        if (feature && action === FeatureState.UPDATE_FEATURE) {
+            data.updatedAt = new Date().toISOString();
+            updateFeature(feature.uuid, data);
+        }
+
         onSuccess();
     };
 

@@ -15,6 +15,12 @@
     background-color: var(--vscode-editorWidget-background);
 }
 
+.featureInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 
 /* TITLE */
 .featureTitle {
@@ -22,6 +28,13 @@
     font-size: 12px;
     color: var(--vscode-editorForeground);
 }
+
+.completed .featureTitle {
+    text-decoration: line-through;
+    color: var(--vscode-foreground);
+    opacity: 0.6;
+}
+
 
 /* ACTIONS */
 .featureActions {
@@ -40,6 +53,8 @@
     color: var(--vscode-activityBar-foreground);
 }
 
+
+/* DELETE DIALOG */
 .deleteDialog { 
     display: flex;
     flex-direction: column;

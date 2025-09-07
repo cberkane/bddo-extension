@@ -10,7 +10,6 @@ const useFeatureLoad = () => {
         const handleMessage = (event: MessageEvent) => {
             if (event.data.command === FeatureState.LOAD_FEATURES_RESPONSE)
                 setFeatures(event.data.features);
-
             if (event.data.command === FeatureState.LOAD_FEATURES_ERROR)
                 setError(event.data.error);
         }

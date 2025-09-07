@@ -1,0 +1,22 @@
+.label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 14rem;
+    color: var(--vscode-input-foreground);
+}
+
+.checkbox {
+    width: 1.1em;
+    height: 1.1em;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    margin-right: 0.5em;
+    background: var(--vscode-input-background);
+    accent-color: var(--vscode-button-background);
+    transition: border-color 0.2s;
+}
+
+.checkbox:focus {
+    outline: 2px solid var(--vscode-focusBorder);
+}

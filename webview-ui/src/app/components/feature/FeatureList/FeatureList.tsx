@@ -1,8 +1,9 @@
 
 import styles from "./FeatureList.module.css";
 
-import { FeatureState, type Feature } from "@/app/models/feature.model";
+import { type Feature } from "@/app/models/feature.model";
 import FeatureItem from "../FeatureItem/FeatureItem";
+import { updateFeature } from "@/app/helpers/featureMessage";
 
 type FeatureListProps = {
     features: Feature[];
@@ -10,17 +11,11 @@ type FeatureListProps = {
 
 const FeatureList = ({ features }: FeatureListProps) => {
     const editFeature = (feature: Feature) => {
-        window.vscode.postMessage({
-            command: FeatureState.UPDATE_FEATURE,
-            data: { uuid: feature.uuid, updatedFeature: feature }
-        })
+        updateFeature(feature.uuid, feature);
     }
 
     const deleteFeature = (uuid: string) => {
-        window.vscode.postMessage({
-            command: FeatureState.DELETE_FEATURE,
-            data: { uuid }
-        });
+        deleteFeature(uuid);
     }
 
     return (

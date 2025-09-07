@@ -1,14 +1,15 @@
-const getCustomError = (input: HTMLInputElement): string => {
-	if (input.name === "title") {
-		if (input.validity.valueMissing) return "Le titre est requis.";
-		if (input.validity.tooShort) return "Le titre doit contenir au moins 3 caractères.";
+const getCustomError = (input: HTMLInputElement): string | undefined => {
+	switch (input.name) {
+		case "title":
+			if (input.validity.valueMissing) return "Le titre est requis.";
+			if (input.value.trim().length < 3) return "Le titre doit contenir au moins 3 caractères.";
+			break;
+		case "project":
+			if (input.validity.valueMissing) return "Le projet est requis.";
+			break;
+		default:
+			return "";
 	}
-
-	if (input.name === "project") {
-		if (input.validity.valueMissing) return "Le projet est requis.";
-	}
-    
-	return "";
 };
 
 export const getFormErrors = (form: HTMLFormElement): Map<string, string> => {
