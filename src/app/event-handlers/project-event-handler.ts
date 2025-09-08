@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 import { Injector } from "../helpers/injector";
 import { ProjectStorageService } from "../storage/project-storage.service";
 import { Message } from "../types/message";
-import { Project, ProjectState } from "../types/project";
+import { Project, ProjectActionType } from "../types/project";
 import { Response } from "../types/response";
 
 export class ProjectEventHandler {
@@ -17,10 +17,10 @@ export class ProjectEventHandler {
 
     handle(message: Message<any>) {
         switch (message.command) {
-            case ProjectState.LOAD_PROJECTS_REQUEST:
+            case ProjectActionType.LOAD_PROJECTS_REQUEST:
                 this.listProjects();
                 break;
-            case ProjectState.ADD_PROJECT:
+            case ProjectActionType.ADD_PROJECT:
                 this.createProject(message.data.project);
                 break;
         }
@@ -39,10 +39,10 @@ export class ProjectEventHandler {
 	private sendResponse(response: Response<Project[]>): void {
 		const { data, success, error } = response;
 		if (success) {
-			const message = { command: ProjectState.LOAD_PROJECTS_RESPONSE, projects: data };
+			const message = { command: ProjectActionType.LOAD_PROJECTS_RESPONSE, projects: data };
 			this.panel.webview.postMessage(message);
 		} else {
-			const message = { command: ProjectState.LOAD_PROJECTS_ERROR, error: error };
+			const message = { command: ProjectActionType.LOAD_PROJECTS_ERROR, error: error };
 			this.panel.webview.postMessage(message);
 		}
 	}

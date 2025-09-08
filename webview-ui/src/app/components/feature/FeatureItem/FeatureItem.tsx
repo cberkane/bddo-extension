@@ -5,7 +5,7 @@ import Button from "@/app/components/shared/Button/Button";
 import Checkbox from "@/app/components/shared/Checkbox/Checkbox";
 import Dialog from "@/app/components/shared/Dialog/Dialog";
 import { ViewChangeContext } from "@/app/contexts/ViewChangeContext";
-import { FeatureState, type Feature } from "@/app/models/feature.model";
+import { FeatureActionType, type Feature } from "@/app/types/feature";
 import FeatureForm from "../FeatureForm/FeatureForm";
 
 import Edit from "@/assets/svg/edit.svg?react";
@@ -81,7 +81,7 @@ const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
             <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
                 <FeatureForm
                     feature={feature}
-                    action={FeatureState.UPDATE_FEATURE}
+                    action={FeatureActionType.UPDATE_FEATURE}
                     onSuccess={() => setShowEditDialog(false)}
                 />
             </Dialog>

@@ -4,19 +4,19 @@ import styles from "./FeatureForm.module.css";
 import Button from "@/app/components/shared/Button/Button";
 import TextInput from "@/app/components/shared/InputText/InputText";
 import { getFormErrors } from "@/app/helpers/featureForm";
-import { FeatureState, type Feature } from "@/app/models/feature.model";
+import { FeatureActionType, type Feature } from "@/app/types/feature";
 import { addFeature, updateFeature } from "@/app/helpers/featureMessage";
 
 type FeaturePageFormProps = {
     onSuccess: () => void;
     feature?: Feature;
-    action?: FeatureState;
+    action?: FeatureActionType;
 };
 
 const FeatureForm = ({
     onSuccess,
     feature,
-    action = FeatureState.ADD_FEATURE,
+    action = FeatureActionType.ADD_FEATURE,
 }: FeaturePageFormProps) => {
     const ref = useRef<HTMLFormElement>(null);
     const [isValid, setIsValid] = useState(false);
@@ -39,7 +39,7 @@ const FeatureForm = ({
             project: formData.get("project") as string | undefined,
         };
 
-        if (action === FeatureState.ADD_FEATURE) {
+        if (action === FeatureActionType.ADD_FEATURE) {
             data.completed = false;
             data.createdAt = new Date().toISOString();
             addFeature(data);
@@ -49,7 +49,7 @@ const FeatureForm = ({
             setErrors(new Map());
         }
 
-        if (feature && action === FeatureState.UPDATE_FEATURE) {
+        if (feature && action === FeatureActionType.UPDATE_FEATURE) {
             data.updatedAt = new Date().toISOString();
             updateFeature(feature.uuid, data);
         }
@@ -76,7 +76,7 @@ const FeatureForm = ({
                 error={errors.get("project")}
             />
             <Button type="submit" disabled={!isValid}>
-                {action === FeatureState.UPDATE_FEATURE ? "Update Feature" : "Add Feature"}
+                {action === FeatureActionType.UPDATE_FEATURE ? "Update Feature" : "Add Feature"}
             </Button>
         </form>
     );

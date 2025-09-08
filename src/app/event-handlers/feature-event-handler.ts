@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 
 import { Injector } from "../helpers/injector";
 import { FeatureStorageService } from "../storage/feature-storage.service";
-import { Feature, FeatureState } from "../types/feature";
+import { Feature, FeatureActionType } from "../types/feature";
 import { Message } from "../types/message";
 import { Response } from "../types/response";
 	
@@ -17,16 +17,16 @@ export class FeatureEventHandler {
 
 	handle(message: Message<any>) {
 		switch (message.command) {
-			case FeatureState.LOAD_FEATURES_REQUEST:
+			case FeatureActionType.LOAD_FEATURES_REQUEST:
 				this.listFeatures();
 				break;
-			case FeatureState.ADD_FEATURE:
+			case FeatureActionType.ADD_FEATURE:
 				this.createFeature(message.data.feature);
 				break;
-			case FeatureState.UPDATE_FEATURE:
+			case FeatureActionType.UPDATE_FEATURE:
 				this.updateFeature(message.data.uuid, message.data.updatedFeature);
 				break;
-			case FeatureState.DELETE_FEATURE:
+			case FeatureActionType.DELETE_FEATURE:
 				this.deleteFeature(message.data.uuid);
 				break;
 		}
@@ -55,10 +55,10 @@ export class FeatureEventHandler {
 	private sendResponse(response: Response<Feature[]>): void {
 		const { data, success, error } = response;
 		if (success) {
-			const message = { command: FeatureState.LOAD_FEATURES_RESPONSE, features: data };
+			const message = { command: FeatureActionType.LOAD_FEATURES_RESPONSE, features: data };
 			this.panel.webview.postMessage(message);
 		} else {
-			const message = { command: FeatureState.LOAD_FEATURES_ERROR, error: error };
+			const message = { command: FeatureActionType.LOAD_FEATURES_ERROR, error: error };
 			this.panel.webview.postMessage(message);
 		}
 	}

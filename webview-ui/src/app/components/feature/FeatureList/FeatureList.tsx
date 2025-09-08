@@ -1,7 +1,7 @@
 
 import styles from "./FeatureList.module.css";
 
-import { type Feature } from "@/app/models/feature.model";
+import { type Feature } from "@/app/types/feature";
 import FeatureItem from "../FeatureItem/FeatureItem";
 import { updateFeature } from "@/app/helpers/featureMessage";
 

@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
-import { FeatureState, type Feature } from "../models/feature.model";
+
+import { FeatureActionType, type Feature } from "@/app/types/feature";
 
 const useFeatureLoad = () => {
     const [features, setFeatures] = useState<Feature[]>([]);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        window.vscode.postMessage({ command: FeatureState.LOAD_FEATURES_REQUEST });
+        window.vscode.postMessage({ command: FeatureActionType.LOAD_FEATURES_REQUEST });
         const handleMessage = (event: MessageEvent) => {
-            if (event.data.command === FeatureState.LOAD_FEATURES_RESPONSE)
+            if (event.data.command === FeatureActionType.LOAD_FEATURES_RESPONSE)
                 setFeatures(event.data.features);
-            if (event.data.command === FeatureState.LOAD_FEATURES_ERROR)
+            if (event.data.command === FeatureActionType.LOAD_FEATURES_ERROR)
                 setError(event.data.error);
         }
         window.addEventListener("message", handleMessage);
