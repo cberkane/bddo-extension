@@ -3,10 +3,10 @@ import * as vscode from "vscode";
 import { Injector } from "../helpers/injector";
 import { FeatureStorageService } from "../storage/feature-storage.service";
 import { Feature, FeatureState } from "../types/feature";
-import { Response } from "../types/response";
 import { Message } from "../types/message";
+import { Response } from "../types/response";
 	
-export class MessageHandler {
+export class FeatureEventHandler {
 	private panel: vscode.WebviewPanel;
 	private featureStorageService: FeatureStorageService;
 

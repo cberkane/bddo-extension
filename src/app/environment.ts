@@ -1,3 +1,4 @@
 export const environment = {
-    mainFileName: "bddo-data.json",
+    featuresFilename: "bddo-data.json",
+    projectsFilename: "bddo-project.json",
 };

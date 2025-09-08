@@ -7,11 +7,11 @@ import { Response } from "../types/response";
 import { StorageService } from "./storage.service";
 
 export class FeatureStorageService extends StorageService {
-	private fileName = environment.mainFileName;
+	private fileName = environment.featuresFilename;
 
 	loadFeatures(): Response<Feature[]> {
 		try {
-			const features = this.readJsonData<Feature[]>(this.fileName) ?? [];
+			const features = this.readJsonData<Feature[]>(this.fileName);
 			return {
 				data: features,
 				success: true,
@@ -28,12 +28,6 @@ export class FeatureStorageService extends StorageService {
 	saveFeature(feature: Omit<Feature, "uuid">): Response<Feature[]> {
 		try {
 			const features = this.readJsonData<Feature[]>(this.fileName);
-			if (!features) {
-				return {
-					success: false,
-					error: "No features found",
-				};
-			}
 			const newFeature = {
 				...feature,
 				uuid: uuid(),
@@ -55,7 +49,7 @@ export class FeatureStorageService extends StorageService {
 
 	updateFeature(uuid: string, updatedData: Partial<Feature>): Response<Feature[]> {
 		try {
-			const features = this.readJsonData<Feature[]>(this.fileName) ?? [];
+			const features = this.readJsonData<Feature[]>(this.fileName);
 			const index = features.findIndex((feature) => feature.uuid === uuid);
 			if (index !== -1) {
 				features[index] = { ...features[index], ...updatedData };
@@ -79,16 +73,8 @@ export class FeatureStorageService extends StorageService {
 	}
 
 	deleteFeature(uuid: string): Response<Feature[]> {
-		console.log(`Deleting feature with uuid: ${uuid}`);
 		try {
 			const features = this.readJsonData<Feature[]>(this.fileName);
-			if (!features) {
-				return {
-					success: false,
-					error: "No features found",
-				};
-			}
-
 			const newFeatures = features.filter((feature) => feature.uuid !== uuid);
 			this.saveJsonData<Feature[]>(this.fileName, newFeatures);
 			return {
