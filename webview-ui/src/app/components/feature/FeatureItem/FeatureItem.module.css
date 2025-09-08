@@ -1,68 +1,62 @@
-/* ITEM */
-.featureItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 8px;
-    border: 1px solid var(--vscode-editorWidget-border); /*change to darker color */
-    border-radius: 6px;
-    cursor: pointer;
-    background-color: var(--vscode-activityBar-background);
-    transition: background-color 0.2s ease;
+.item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 4px 8px;
+	background-color: var(--vscode-activityBar-background);
+
+	border: 1px solid var(--vscode-editorWidget-border); /*change to darker color */
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
 }
 
-.featureItem:hover {
-    background-color: var(--vscode-editorWidget-background);
+.item:hover {
+	background-color: var(--vscode-editorWidget-background);
 }
 
-.featureInfo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.content {
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }
 
-
-/* TITLE */
-.featureTitle {
-    font-weight: 400;
-    font-size: 12px;
-    color: var(--vscode-editorForeground);
+.content .title {
+	font-weight: 400;
+	font-size: 12px;
+	color: var(--vscode-editorForeground);
 }
 
-.completed .featureTitle {
-    text-decoration: line-through;
-    color: var(--vscode-foreground);
-    opacity: 0.6;
+.content .completed .title {
+	text-decoration: line-through;
+	color: var(--vscode-foreground);
+	opacity: 0.6;
 }
 
-
-/* ACTIONS */
-.featureActions {
-    display: flex;
-    gap: 8px;
+.actions {
+	display: flex;
+	gap: 8px;
 }
 
-.featureActions .icon {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    color: var(--vscode-activityBar-inactiveForeground);
+.actions .icon {
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	color: var(--vscode-activityBar-inactiveForeground);
 }
 
-.featureActions .icon:hover {
-    color: var(--vscode-activityBar-foreground);
+.actions .icon:hover {
+	color: var(--vscode-activityBar-foreground);
 }
 
-
-/* DELETE DIALOG */
-.deleteDialog { 
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.deleteDialog {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
 }
 
-.deleteDialogActions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
+.deleteDialog .actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
 }

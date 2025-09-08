@@ -1,5 +1,14 @@
-.openButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+.header {
+	margin-bottom: 16px;
+}
+
+.fab {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+}
+
+.fab .icon {
+	width: 24px;
+	height: 24px;
 }

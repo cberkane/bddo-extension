@@ -1,0 +1,9 @@
+.header {
+    margin-bottom: 16px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}

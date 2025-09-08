@@ -49,20 +49,20 @@ const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
     return (
         <>
             <>
-                <div className={styles.featureItem} key={feature.uuid}>
-                    <div className={styles.featureInfo}>
+                <div className={styles.item} key={feature.uuid}>
+                    <div className={styles.content}>
                         <Checkbox
                             name={feature.uuid}
                             defaultChecked={feature.completed}
                             onChange={handleChange}
                         />
                         <div onClick={gotoScenario} className={feature.completed ? styles.completed : ""}>
-                            <h3 className={styles.featureTitle}>{feature.title}</h3>
+                            <h3 className={styles.title}>{feature.title}</h3>
                             {feature.project && <p>{feature.project}</p>}
                             <small>Last updated: {feature.updatedAt ?? feature.createdAt}</small>
                         </div>
                     </div>
-                    <div className={styles.featureActions}>
+                    <div className={styles.actions}>
                         <Edit className={styles.icon} onClick={handleEdit} />
                         <Trash className={styles.icon} onClick={handleDelete} />
                     </div>
@@ -72,7 +72,7 @@ const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
                 <div className={styles.deleteDialog}>
                     <h2>Confirm Deletion</h2>
                     <p>Are you sure you want to permanently delete this feature?</p>
-                    <div className={styles.deleteDialogActions}>
+                    <div className={styles.actions}>
                         <Button onClick={() => setShowDeleteDialog(false)}>Cancel</Button>
                         <Button onClick={() => onDelete(feature.uuid)}>Delete</Button>
                     </div>

@@ -2,6 +2,7 @@ import { createContext } from "react";
 
 export enum ViewPath {
     Features = "features",
+    Projects = "projects",
     Scenarios = "scenarios",
 }
 
@@ -17,5 +18,5 @@ export type ViewChange = {
 
 export const ViewChangeContext = createContext<ViewChange>({
     view: { path: ViewPath.Features, params: {} },
-    setView: () => { }, // TODO: change function name !
+    setView: () => { },
 });

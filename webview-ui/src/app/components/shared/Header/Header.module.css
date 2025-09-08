@@ -1,16 +1,16 @@
-.headerContent {
+.content {
 	display: flex;
-	align-items: center;
-	gap: 4px;
+	align-items: baseline;
+	gap: 2px;
 }
 
-.headerContent .icon {
-	transform: translateY(4px);
+.content .icon {
 	width: 24px;
 	height: 24px;
 }
 
-.headerContent .title {
+.content .title {
 	font-size: 1.5rem;
 	font-weight: 400;
 }
+	

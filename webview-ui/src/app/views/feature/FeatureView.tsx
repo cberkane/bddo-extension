@@ -15,16 +15,17 @@ const FeatureView = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
     const { features } = useFeatureLoad();
 
+    const handleClick = () => {
+        setIsFormOpen(true);
+    }
+
     return (
         <>
             <>
-                <Header title="Features" icon={<Edit />} />
+                <Header title="Features" icon={<Edit />} className={styles.header} />
                 <FeatureList features={features} />
-                <Button onClick={() => setIsFormOpen(true)}
-                    className={styles.openButton}
-                    variant="rounded"
-                >
-                    <Plus style={{ width: '24px', height: '24px' }} />
+                <Button onClick={handleClick} variant="rounded" className={styles.fab}>
+                    <Plus className={styles.icon} />
                 </Button>
             </>
             <Dialog open={isFormOpen} onClose={() => setIsFormOpen(false)}>
