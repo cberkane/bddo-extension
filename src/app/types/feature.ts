@@ -4,7 +4,7 @@ export type Feature = {
 	createdAt: string;
 	updatedAt?: string;
 	completed: boolean;
-	project?: string;
+	projectUuid?: string;
 };
 
 export enum FeatureActionType {

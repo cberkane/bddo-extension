@@ -10,7 +10,7 @@ type TextInputProps = {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-const TextInput = ({ name, label, placeholder, defaultValue, required, error, onChange, ...rest }: TextInputProps) => (
+const InputText = ({ name, label, placeholder, defaultValue, required, error, onChange, ...rest }: TextInputProps) => (
     <div className={styles.inputGroup}>
         <label htmlFor={name} className={styles.label}>
             {required && <span className={styles.asterisk}>*</span>} {label}
@@ -31,4 +31,4 @@ const TextInput = ({ name, label, placeholder, defaultValue, required, error, on
     </div>
 );
 
-export default TextInput;
+export default InputText;

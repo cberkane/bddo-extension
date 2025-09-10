@@ -2,10 +2,12 @@ import { useRef, useState } from "react";
 import styles from "./FeatureForm.module.css";
 
 import Button from "@/app/components/shared/Button/Button";
-import TextInput from "@/app/components/shared/InputText/InputText";
+import InputText from "@/app/components/shared/InputText/InputText";
+import Select from "@/app/components/shared/Select/Select";
 import { getFormErrors } from "@/app/helpers/featureForm";
-import { FeatureActionType, type Feature } from "@/app/types/feature";
 import { addFeature, updateFeature } from "@/app/helpers/featureMessage";
+import useProjectLoad from "@/app/hooks/useProjectLoad";
+import { FeatureActionType, type Feature } from "@/app/types/feature";
 
 type FeaturePageFormProps = {
     onSuccess: () => void;
@@ -22,6 +24,14 @@ const FeatureForm = ({
     const [isValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState<Map<string, string>>(new Map());
 
+    const { projects } = useProjectLoad();
+    const projectOptions = [{ value: "all", label: "All" }].concat(
+        projects.map(project => ({
+            value: project.uuid,
+            label: project.name,
+        }))
+    );
+
     const handleInput = () => {
         if (!ref.current) return;
 
@@ -36,7 +46,7 @@ const FeatureForm = ({
         const formData = new FormData(event.currentTarget);
         const data: Partial<Feature> = {
             title: formData.get("title") as string,
-            project: formData.get("project") as string | undefined,
+            projectUuid: formData.get("projectUuid") as string | undefined,
         };
 
         if (action === FeatureActionType.ADD_FEATURE) {
@@ -59,7 +69,7 @@ const FeatureForm = ({
 
     return (
         <form ref={ref} className={styles.form} onInput={handleInput} onSubmit={handleSubmit}>
-            <TextInput
+            <InputText
                 name="title"
                 label="Title"
                 placeholder="Feature title"
@@ -68,12 +78,12 @@ const FeatureForm = ({
                 minLength={3}
                 error={errors.get("title")}
             />
-            <TextInput
-                name="project"
+            <Select
+                name="projectUuid"
                 label="Project"
-                placeholder="Project name"
-                defaultValue={feature?.project}
-                error={errors.get("project")}
+                placeholder="Select a project..."
+                options={projectOptions}
+                error={errors.get("projectUuid")}
             />
             <Button type="submit" disabled={!isValid}>
                 {action === FeatureActionType.UPDATE_FEATURE ? "Update Feature" : "Add Feature"}

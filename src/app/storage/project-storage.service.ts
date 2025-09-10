@@ -10,7 +10,7 @@ import { ProjectFile } from "../types/project";
 export class ProjectStorageService extends StorageService {
 	private fileName = environment.projectsFilename;
 
-	loadProjects(): Response<Project[]> {
+	getProjects(): Response<Project[]> {
 		try {
 			const file = this.readJsonData<ProjectFile>(this.fileName);
 			return {

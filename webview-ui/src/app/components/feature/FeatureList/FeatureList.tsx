@@ -10,6 +10,7 @@ type FeatureListProps = {
 }
 
 const FeatureList = ({ features }: FeatureListProps) => {
+    // TODO: put in item component
     const editFeature = (feature: Feature) => {
         updateFeature(feature.uuid, feature);
     }

@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import styles from "./ProjectForm.module.css";
 
 import Button from "@/app/components/shared/Button/Button";
-import TextInput from "@/app/components/shared/InputText/InputText";
+import InputText from "@/app/components/shared/InputText/InputText";
 import { getFormErrors } from "@/app/helpers/projectForm";
 import { addProject, updateProject } from "@/app/helpers/projectMessage";
 import { ProjectActionType, type Project } from "@/app/types/project";
@@ -61,7 +61,7 @@ const ProjectForm = ({
 			onSubmit={handleSubmit}
 			onInput={handleInput}
 		>
-			<TextInput
+			<InputText
 				name="name"
 				label="Project Name"
 				placeholder="Enter project name"

@@ -27,7 +27,7 @@ export class ProjectEventHandler {
     }
 
 	private listProjects(): void {
-		const response = this.projectStorageService.loadProjects();
+		const response = this.projectStorageService.getProjects();
 		this.sendResponse(response);
 	}
 

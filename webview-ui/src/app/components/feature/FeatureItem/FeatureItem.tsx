@@ -11,6 +11,7 @@ import FeatureForm from "../FeatureForm/FeatureForm";
 import Edit from "@/assets/svg/edit.svg?react";
 import Trash from "@/assets/svg/trash.svg?react";
 import { updateFeature } from "@/app/helpers/featureMessage";
+import useProjectLoad from "@/app/hooks/useProjectLoad";
 
 
 type FeatureItemProps = {
@@ -23,7 +24,11 @@ type FeatureItemProps = {
 const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [showEditDialog, setShowEditDialog] = useState(false);
+    
     const { setView } = useContext(ViewChangeContext);
+    
+    const { projects } = useProjectLoad();
+    const project = projects.find(p => p.uuid === feature?.projectUuid) ?? null;
 
     const handleEdit = (event: React.MouseEvent) => {
         event.stopPropagation();
@@ -40,7 +45,7 @@ const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
         setView({ path: "scenarios", params: { uuid: feature.uuid } });
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checkFeature = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.stopPropagation();
         const updatedFeature = { ...feature, completed: event.target.checked };
         updateFeature(feature.uuid, updatedFeature);
@@ -54,11 +59,11 @@ const FeatureItem = ({ feature, onDelete }: FeatureItemProps) => {
                         <Checkbox
                             name={feature.uuid}
                             defaultChecked={feature.completed}
-                            onChange={handleChange}
+                            onChange={checkFeature}
                         />
                         <div onClick={gotoScenario} className={feature.completed ? styles.completed : ""}>
                             <h3 className={styles.title}>{feature.title}</h3>
-                            {feature.project && <p>{feature.project}</p>}
+                            {project && <p>{project.name}</p>}
                             <small>Last updated: {feature.updatedAt ?? feature.createdAt}</small>
                         </div>
                     </div>

@@ -15,10 +15,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                 </li>
                 {projects?.map(project => (
                     <li key={project.uuid}>
-                        <ProjectItem
-                            key={project.uuid}
-                            project={project}
-                        />
+                        <ProjectItem key={project.uuid} project={project} />
                     </li>
                 ))}
             </ul>

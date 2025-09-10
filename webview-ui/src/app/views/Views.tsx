@@ -6,11 +6,12 @@ import ProjectView from "./project/ProjectView";
 
 const Views = () => {
     const { view } = useContext(ViewChangeContext);
+
     switch (view.path) {
         case ViewPath.Projects:
             return <ProjectView />;
         case ViewPath.Features:
-            return <FeatureView params={view.params} />;
+            return <FeatureView projectUuid={view.params?.projectUuid} />;
         case ViewPath.Scenarios:
             return <ScenarioView />;
         default:

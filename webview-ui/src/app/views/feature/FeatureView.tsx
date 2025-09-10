@@ -12,14 +12,14 @@ import Edit from "@/assets/svg/edit.svg?react";
 import Plus from "@/assets/svg/plus.svg?react";
 
 type FeatureViewProps = {
-	params?: Record<string, string>;
+	projectUuid?: string;
 };
 
-const FeatureView = ({ params }: FeatureViewProps) => {
+const FeatureView = ({ projectUuid }: FeatureViewProps) => {
 	const [isFormOpen, setIsFormOpen] = useState(false);
 	const { features } = useFeatureLoad();
-	const filteredFeatures = params?.project
-		? features.filter((feature) => feature.project === params.project)
+	const filteredFeatures = projectUuid
+		? features.filter((feature) => feature.projectUuid === projectUuid)
 		: features;
 
 	const handleClick = () => {
