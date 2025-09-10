@@ -28,12 +28,18 @@ export class ProjectStorageService extends StorageService {
 
 	saveProject(project: Omit<Project, "uuid">): Response<Project[]> {
 		try {
-			const addedProject = {
-				...project,
-				uuid: uuid(),
-			};
 			const file = this.readJsonData<ProjectFile>(this.fileName);
-			const projects = [addedProject, ...file.projects];
+			const projectExists = file.projects.find((p) => p.name === project.name);
+			if (projectExists) {
+				vscode.window.showErrorMessage("Project with the same name already exists");
+				return {
+					success: false,
+					error: "Project with the same name already exists",
+				};
+			}
+
+			const created = { ...project, uuid: uuid() };
+			const projects = [created, ...file.projects];
 			const updatedFile: ProjectFile = { ...file, projects };
 			this.saveJsonData<ProjectFile>(this.fileName, updatedFile);
 			return {

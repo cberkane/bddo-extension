@@ -8,7 +8,7 @@ export enum ViewPath {
 
 export type View = {
     path: string;
-    params: Record<string, string>;
+    params?: Record<string, string>;
 }
 
 export type ViewChange = {

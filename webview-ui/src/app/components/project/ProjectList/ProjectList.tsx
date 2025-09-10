@@ -10,6 +10,9 @@ const ProjectList = ({ projects }: ProjectListProps) => {
     return (
         <div>
             <ul className={styles.list}>
+                <li key={"all"}>
+                    <ProjectItem key={"all"} generic={true} />
+                </li>
                 {projects?.map(project => (
                     <li key={project.uuid}>
                         <ProjectItem

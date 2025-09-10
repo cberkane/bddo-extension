@@ -10,9 +10,9 @@ const Views = () => {
         case ViewPath.Projects:
             return <ProjectView />;
         case ViewPath.Features:
-            return <FeatureView />;
+            return <FeatureView params={view.params} />;
         case ViewPath.Scenarios:
-            return <ScenarioView params={view.params} />;
+            return <ScenarioView />;
         default:
             return <FeatureView />;
 

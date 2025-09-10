@@ -3,13 +3,15 @@ import Edit from "@/assets/svg/edit.svg?react";
 
 
 type ScenarioViewProps = {
-    params: Record<string, string>;
+    params?: Record<string, string>;
 }
 
 const ScenarioView = ({ params }: ScenarioViewProps) => {
+    console.log("Implement me", params);
+    
     return (
         <>
-            <Header title={`Scenario: ${params['scenarioId']}`} icon={<Edit />} />
+            <Header title="Scenarios" icon={<Edit />} />
         </>
     );
 };
