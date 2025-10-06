@@ -1,12 +1,12 @@
 type Success<T> = {
-	data: T;
 	success: true;
+	data: T;
     error?: never;
 }
 
 type Failure = {
-    data?: never;
     success: false;
+    data?: never;
     error: string;
 }
 

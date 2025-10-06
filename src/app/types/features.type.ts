@@ -7,6 +7,12 @@ export type Feature = {
 	projectUuid?: string;
 };
 
+export type FeatureFile = {
+	features: Feature[];
+};
+
+export type FeatureData = Omit<Feature, "uuid">;
+
 export enum FeatureActionType {
 	LOAD_FEATURES_REQUEST = "load_features_request",
 	LOAD_FEATURES_RESPONSE = "load_features_response",

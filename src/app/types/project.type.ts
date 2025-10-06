@@ -9,6 +9,8 @@ export type ProjectFile = {
 	currentProject: string | null;
 };
 
+export type ProjectData = Omit<Project, "uuid">;
+
 export enum ProjectActionType {
 	LOAD_PROJECTS_REQUEST = "load_projects_request",
 	LOAD_PROJECTS_RESPONSE = "load_projects_response",

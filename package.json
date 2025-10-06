@@ -1,7 +1,7 @@
 {
 	"name": "bddo",
 	"displayName": "bddo",
-	"description": "",
+	"description": "A VS Code extension to manage BDD features and scenarios.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.103.0"
@@ -17,8 +17,25 @@
 				"command": "bddo.open",
 				"title": "open bddo"
 			}
-		]
+		],
+		"configuration": {
+			"type": "object",
+			"title": "bddo Configuration",
+			"properties": {
+				"bddo.featuresFilename": {
+					"type": "string",
+					"default": "bddo-data.json",
+					"description": "The name of the JSON file where BDD features and scenarios are stored."
+				},
+				"bddo.projectsFilename": {
+					"type": "string",
+					"default": "bddo-project.json",
+					"description": "The name of the JSON file where project settings are stored."
+				}
+			}
+		}
 	},
+
 	"scripts": {
 		"vscode:prepublish": "npm run package",
 		"compile": "npm run check-types && npm run lint && node esbuild.js",

@@ -1,14 +1,10 @@
 import * as vscode from "vscode";
 
-import { openCommand } from "./app/comands/open-command";
-import { init } from "./app/init";
+import { initExtension } from "./app/init";
+import { open } from "./app/comands/open";
 
 export function activate(context: vscode.ExtensionContext) {
-	init(context);
-	const disposable = vscode.commands.registerCommand("bddo.open", () => openCommand(context));
+	initExtension(context);
+	const disposable = vscode.commands.registerCommand("bddo.open", () => open(context));
 	context.subscriptions.push(disposable);
-}
-
-export function deactivate() {
-	// Implement me...
 }

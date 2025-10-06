@@ -1,18 +1,18 @@
 import * as vscode from "vscode";
 
-import { Injector } from "../helpers/injector";
-import { ProjectStorageService } from "../storage/project-storage.service";
-import { Message } from "../types/message";
-import { Project, ProjectActionType } from "../types/project";
-import { Response } from "../types/response";
+import { Injector } from "@app/injector";
+import { ProjectsService } from "@app/services/projects.service";
+import { Message } from "@app/types/message.type";
+import { Project, ProjectActionType } from "@app/types/project.type";
+import { Response } from "@app/types/response.type";
 
-export class ProjectEventHandler {
+export class ProjectsController {
 	private panel: vscode.WebviewPanel;
-	private projectStorageService: ProjectStorageService;
+	private projectsService: ProjectsService;
 
 	constructor(panel: vscode.WebviewPanel) {
 		this.panel = panel;
-		this.projectStorageService = Injector.getProjectStorageService();
+		this.projectsService = Injector.getProjectsService();
 	}
 
     handle(message: Message<any>) {
@@ -27,12 +27,12 @@ export class ProjectEventHandler {
     }
 
 	private listProjects(): void {
-		const response = this.projectStorageService.getProjects();
+		const response = this.projectsService.getProjects();
 		this.sendResponse(response);
 	}
 
     private createProject(project: Omit<Project, "uuid">): void {
-        const response = this.projectStorageService.saveProject(project);
+        const response = this.projectsService.addProject(project);
         this.sendResponse(response);
     }
 

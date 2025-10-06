@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
 
-export class WebviewUI {
+export class WebviewUIService {
 	panel: vscode.WebviewPanel | undefined;
 
 	/**

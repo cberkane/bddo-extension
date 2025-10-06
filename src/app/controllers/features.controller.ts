@@ -1,18 +1,18 @@
 import * as vscode from "vscode";
 
-import { Injector } from "../helpers/injector";
-import { FeatureStorageService } from "../storage/feature-storage.service";
-import { Feature, FeatureActionType } from "../types/feature";
-import { Message } from "../types/message";
-import { Response } from "../types/response";
+import { Injector } from "@app/injector";
+import { FeaturesService } from "@app/services/features.service";
+import { Feature, FeatureActionType } from "@app/types/features.type";
+import { Message } from "@app/types/message.type";
+import { Response } from "@app/types/response.type";
 	
-export class FeatureEventHandler {
+export class FeaturesController {
 	private panel: vscode.WebviewPanel;
-	private featureStorageService: FeatureStorageService;
+	private featuresService: FeaturesService;
 
 	constructor(panel: vscode.WebviewPanel) {
 		this.panel = panel;
-		this.featureStorageService = Injector.getFeatureStorageService();
+		this.featuresService = Injector.getFeaturesService();
 	}
 
 	handle(message: Message<any>) {
@@ -33,22 +33,22 @@ export class FeatureEventHandler {
 	}
 
 	private listFeatures(): void {
-		const response = this.featureStorageService.loadFeatures();
+		const response = this.featuresService.loadFeatures();
 		this.sendResponse(response);
 	}
 
 	private createFeature(feature: Omit<Feature, "uuid">): void {
-		const response = this.featureStorageService.saveFeature(feature);
+		const response = this.featuresService.saveFeature(feature);
 		this.sendResponse(response);
 	}
 
 	private updateFeature(uuid: string, updatedData: Partial<Feature>): void {
-		const response = this.featureStorageService.updateFeature(uuid, updatedData);
+		const response = this.featuresService.updateFeature(uuid, updatedData);
 		this.sendResponse(response);
 	}
 
 	private deleteFeature(uuid: string): void {
-		const response = this.featureStorageService.deleteFeature(uuid);
+		const response = this.featuresService.deleteFeature(uuid);
 		this.sendResponse(response);
 	}
 
