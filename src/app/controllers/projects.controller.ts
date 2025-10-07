@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-import { Injector } from "@app/injector";
+import { Inject } from "@app/inject";
 import { ProjectsService } from "@app/services/projects.service";
 import { Message } from "@app/types/message.type";
 import { Project, ProjectActionType } from "@app/types/project.type";
@@ -12,7 +12,7 @@ export class ProjectsController {
 
 	constructor(panel: vscode.WebviewPanel) {
 		this.panel = panel;
-		this.projectsService = Injector.getProjectsService();
+		this.projectsService = Inject.getProjectsService();
 	}
 
     handle(message: Message<any>) {

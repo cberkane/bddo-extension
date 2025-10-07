@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-import { Injector } from "@app/injector";
+import { Inject } from "@app/inject";
 import { FeaturesService } from "@app/services/features.service";
 import { Feature, FeatureActionType } from "@app/types/features.type";
 import { Message } from "@app/types/message.type";
@@ -12,7 +12,7 @@ export class FeaturesController {
 
 	constructor(panel: vscode.WebviewPanel) {
 		this.panel = panel;
-		this.featuresService = Injector.getFeaturesService();
+		this.featuresService = Inject.getFeaturesService();
 	}
 
 	handle(message: Message<any>) {

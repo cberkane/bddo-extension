@@ -5,7 +5,7 @@ import { WebviewUIService } from "./services/webview-ui.service";
 import { FeaturesService } from "./services/features.service";
 import { ProjectsService } from "./services/projects.service";
 
-export class Injector {
+export class Inject {
 	private static context: ExtensionContext;
 
 	private static webviewUIService: WebviewUIService;
@@ -14,34 +14,34 @@ export class Injector {
 	private static projectsService: ProjectsService;
 
 	static setContext(context: ExtensionContext) {
-		Injector.context = context;
+		Inject.context = context;
 	}
 
 	static getWebviewUIService(): WebviewUIService {
-		if (!Injector.webviewUIService) {
-			Injector.webviewUIService = new WebviewUIService();
+		if (!Inject.webviewUIService) {
+			Inject.webviewUIService = new WebviewUIService();
 		}
-		return Injector.webviewUIService;
+		return Inject.webviewUIService;
 	}
 
 	static getStorageService(): StorageService {
-		if (!Injector.storageService) {
-			Injector.storageService = new StorageService(Injector.context);
+		if (!Inject.storageService) {
+			Inject.storageService = new StorageService(Inject.context);
 		}
-		return Injector.storageService;
+		return Inject.storageService;
 	}
 
 	static getFeaturesService(): FeaturesService {
-		if (!Injector.featuresService) {
-			Injector.featuresService = new FeaturesService(Injector.context);
+		if (!Inject.featuresService) {
+			Inject.featuresService = new FeaturesService(Inject.context);
 		}
-		return Injector.featuresService;
+		return Inject.featuresService;
 	}
 
 	static getProjectsService(): ProjectsService {
-		if (!Injector.projectsService) {
-			Injector.projectsService = new ProjectsService(Injector.context);
+		if (!Inject.projectsService) {
+			Inject.projectsService = new ProjectsService(Inject.context);
 		}
-		return Injector.projectsService;
+		return Inject.projectsService;
 	}
 }

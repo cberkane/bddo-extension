@@ -1,14 +1,14 @@
 import * as vscode from "vscode";
 
-import { Injector } from "@app/injector";
+import { Inject } from "@app/inject";
 
 export function initExtension(context: vscode.ExtensionContext) {
 	const config = vscode.workspace.getConfiguration("bddo");
 	const featuresFilename = config.get<string>("featuresFilename")!;
 	const projectsFilename = config.get<string>("projectsFilename")!;
 
-	Injector.setContext(context);
-	const storageService = Injector.getStorageService();
+	Inject.setContext(context);
+	const storageService = Inject.getStorageService();
 	storageService.initStorage(featuresFilename, {
 		features: [],
 	});

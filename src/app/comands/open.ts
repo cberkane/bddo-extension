@@ -1,11 +1,11 @@
 import { ExtensionContext } from "vscode";
 
-import { FeaturesController } from "../controllers/features.controller";
-import { ProjectsController } from "../controllers/projects.controller";
-import { Injector } from "../injector";
+import { FeaturesController } from "@app/controllers/features.controller";
+import { ProjectsController } from "@app/controllers/projects.controller";
+import { Inject } from "@app/inject";
 
 export const open = (context: ExtensionContext) => {
-	const webviewUIService = Injector.getWebviewUIService();
+	const webviewUIService = Inject.getWebviewUIService();
 	const panel = webviewUIService.initOrOpen(context);
 
 	panel.webview.onDidReceiveMessage(async (message) => {
