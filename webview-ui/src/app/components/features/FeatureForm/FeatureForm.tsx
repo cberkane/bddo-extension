@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import styles from "./FeatureForm.module.css";
 
-import Button from "@/app/components/shared/Button/Button";
-import InputText from "@/app/components/shared/InputText/InputText";
-import Select from "@/app/components/shared/Select/Select";
-import { getFormErrors } from "@/app/helpers/featureForm";
-import { addFeature, updateFeature } from "@/app/helpers/featureMessage";
+import Button from "@/app/components/core/Button/Button";
+import InputText from "@/app/components/core/InputText/InputText";
+import Select from "@/app/components/core/Select/Select";
+import { getFormErrors } from "@/app/helpers/features/featureForm";
+import { addFeature, updateFeature } from "@/app/helpers/features/featureMessage";
 import useProjectLoad from "@/app/hooks/useProjectLoad";
 import { FeatureActionType, type Feature } from "@/app/types/feature";
 

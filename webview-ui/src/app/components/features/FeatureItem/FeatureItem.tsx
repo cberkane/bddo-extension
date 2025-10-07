@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
 import styles from "./FeatureItem.module.css";
 
-import Button from "@/app/components/shared/Button/Button";
-import Checkbox from "@/app/components/shared/Checkbox/Checkbox";
-import Dialog from "@/app/components/shared/Dialog/Dialog";
-import { ViewChangeContext } from "@/app/contexts/ViewChangeContext";
+import Button from "@/app/components/core/Button/Button";
+import Checkbox from "@/app/components/core/Checkbox/Checkbox";
+import Dialog from "@/app/components/core/Dialog/Dialog";
+import { ViewChangeContext } from "@/app/contexts/core/ViewChangeContext";
 import { FeatureActionType, type Feature } from "@/app/types/feature";
-import FeatureForm from "../FeatureForm/FeatureForm";
+import FeatureForm from "../FeatureForm/FeatureForm.js";
 
 import Edit from "@/assets/svg/edit.svg?react";
 import Trash from "@/assets/svg/trash.svg?react";
-import { updateFeature } from "@/app/helpers/featureMessage";
+import { updateFeature } from "@/app/helpers/features/featureMessage.js";
 import useProjectLoad from "@/app/hooks/useProjectLoad";
 
 

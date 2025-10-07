@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import styles from "./ProjectForm.module.css";
 
-import Button from "@/app/components/shared/Button/Button";
-import InputText from "@/app/components/shared/InputText/InputText";
-import { getFormErrors } from "@/app/helpers/projectForm";
-import { addProject, updateProject } from "@/app/helpers/projectMessage";
+import Button from "@/app/components/core/Button/Button";
+import InputText from "@/app/components/core/InputText/InputText";
+import { getFormErrors } from "@/app/helpers/projects/projectForm";
+import { addProject, updateProject } from "@/app/helpers/projects/projectMessage";
 import { ProjectActionType, type Project } from "@/app/types/project";
 
 type ProjectFormProps = {

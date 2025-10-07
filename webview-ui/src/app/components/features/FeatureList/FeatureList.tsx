@@ -2,8 +2,8 @@
 import styles from "./FeatureList.module.css";
 
 import { type Feature } from "@/app/types/feature";
-import FeatureItem from "../FeatureItem/FeatureItem";
-import { updateFeature } from "@/app/helpers/featureMessage";
+import FeatureItem from "../FeatureItem/FeatureItem.js";
+import { updateFeature, deleteFeature } from "@/app/helpers/features/featureMessage.js";
 
 type FeatureListProps = {
     features: Feature[];
@@ -11,11 +11,11 @@ type FeatureListProps = {
 
 const FeatureList = ({ features }: FeatureListProps) => {
     // TODO: put in item component
-    const editFeature = (feature: Feature) => {
+    const onFeatureEdit = (feature: Feature) => {
         updateFeature(feature.uuid, feature);
     }
 
-    const deleteFeature = (uuid: string) => {
+    const onFeatureDelete = (uuid: string) => {
         deleteFeature(uuid);
     }
 
@@ -27,8 +27,8 @@ const FeatureList = ({ features }: FeatureListProps) => {
                         <FeatureItem
                             key={feature.uuid}
                             feature={feature}
-                            onEdit={(event) => editFeature(event)}
-                            onDelete={() => deleteFeature(feature.uuid)}
+                            onEdit={(event) => onFeatureEdit(event)}
+                            onDelete={() => onFeatureDelete(feature.uuid)}
                         />
                     </li>
                 ))}

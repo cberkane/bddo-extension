@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styles from './App.module.css';
 
-import { type View, ViewChangeContext } from '@/app/contexts/ViewChangeContext';
-import Views from '@/app/views/Views';
-import Switcher from './app/components/shared/Switcher/Switcher';
+import { type View, ViewChangeContext } from '@/app/contexts/core/ViewChangeContext';
+import Views from '@/app/pages/Pages';
+import Switcher from './app/components/core/Switcher/Switcher';
 
 const App = () => {
     const [view, setView] = useState<View>({ path: "features", params: {} });

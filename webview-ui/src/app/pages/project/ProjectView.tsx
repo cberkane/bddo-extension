@@ -1,14 +1,14 @@
 import { useState } from "react";
 import styles from "./ProjectView.module.css";
 
-import Button from "@/app/components/shared/Button/Button";
-import Header from "@/app/components/shared/Header/Header";
+import Button from "@/app/components/core/Button/Button";
+import Header from "@/app/components/core/Header/Header";
 import useProjectLoad from "@/app/hooks/useProjectLoad";
 
 import Edit from "@/assets/svg/edit.svg?react";
-import ProjectList from "@/app/components/project/ProjectList/ProjectList";
-import Dialog from "@/app/components/shared/Dialog/Dialog";
-import ProjectForm from "@/app/components/project/ProjectForm/ProjectForm";
+import ProjectList from "@/app/components/projects/ProjectList/ProjectList";
+import Dialog from "@/app/components/core/Dialog/Dialog";
+import ProjectForm from "@/app/components/projects/ProjectForm/ProjectForm";
 
 
 const ProjectView = () => {

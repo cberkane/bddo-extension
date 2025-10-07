@@ -1,15 +1,14 @@
-import { useState, useContext } from "react";
-
-import type { Project } from "@/app/types/project";
+import { useContext, useState } from "react";
 import styles from "./ProjectItem.module.css";
 
+import Button from "@/app/components/core/Button/Button";
+import Dialog from "@/app/components/core/Dialog/Dialog";
+import { ViewChangeContext } from "@/app/contexts/core/ViewChangeContext";
+import { deleteProject } from "@/app/helpers/projects/projectMessage";
+import type { Project } from "@/app/types/project";
 import Edit from "@/assets/svg/edit.svg?react";
 import Folder from "@/assets/svg/folder.svg?react";
 import Trash from "@/assets/svg/trash.svg?react";
-import { ViewChangeContext } from "@/app/contexts/ViewChangeContext";
-import Dialog from "../../shared/Dialog/Dialog";
-import Button from "../../shared/Button/Button";
-import { deleteProject } from "@/app/helpers/projectMessage";
 
 
 type ProjectItemProps = {

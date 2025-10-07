@@ -1,6 +1,6 @@
 import type { Project } from "@/app/types/project";
 import styles from "./ProjectList.module.css";
-import ProjectItem from "../ProjectItem/ProjectItem";
+import ProjectItem from "../ProjectItem/ProjectItem.js";
 
 type ProjectListProps = {
     projects: Project[];

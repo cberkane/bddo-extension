@@ -1,4 +1,4 @@
-import { type Project, ProjectActionType  } from "../types/project";
+import { type Project, ProjectActionType  } from "@/app/types/project";
 
 export const addProject = (project: Partial<Project>) => {
     window.vscode.postMessage({

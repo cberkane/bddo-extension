@@ -1,12 +1,12 @@
 import { useState } from "react";
 import styles from "./FeatureView.module.css";
 
-import FeatureForm from "@/app/components/feature/FeatureForm/FeatureForm";
-import FeatureList from "@/app/components/feature/FeatureList/FeatureList";
-import Button from "@/app/components/shared/Button/Button";
-import Dialog from "@/app/components/shared/Dialog/Dialog";
+import FeatureForm from "@/app/components/features/FeatureForm/FeatureForm";
+import FeatureList from "@/app/components/features/FeatureList/FeatureList";
+import Button from "@/app/components/core/Button/Button";
+import Dialog from "@/app/components/core/Dialog/Dialog";
 import useFeatureLoad from "@/app/hooks/useFeatureLoad";
-import Header from "@/app/components/shared/Header/Header";
+import Header from "@/app/components/core/Header/Header";
 
 import Edit from "@/assets/svg/edit.svg?react";
 import Plus from "@/assets/svg/plus.svg?react";

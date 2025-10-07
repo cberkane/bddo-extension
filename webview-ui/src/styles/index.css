@@ -1,8 +1,13 @@
-ul, li {
-    all: unset;
+ul,
+li {
+	all: unset;
 }
 
-p, h1, h2, h3, h4 {
-    margin: 0;
-    padding: 0;
+p,
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	padding: 0;
 }
