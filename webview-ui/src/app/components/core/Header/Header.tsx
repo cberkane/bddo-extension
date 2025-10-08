@@ -6,6 +6,7 @@ type HeaderProps = {
     icon: React.ReactElement;
 } & React.HTMLAttributes<HTMLElement>;
 
+// TODO: rename to PageHeader
 const Header = ({ title, icon, ...rest }: HeaderProps) => {
     const iconProps = { style: { width: "16px", height: "16px" } };
     const clonedIcon = React.cloneElement(icon, iconProps);

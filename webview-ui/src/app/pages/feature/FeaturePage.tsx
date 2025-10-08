@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./FeatureView.module.css";
+import styles from "./FeaturePage.module.css";
 
 import FeatureForm from "@/app/components/features/FeatureForm/FeatureForm";
 import FeatureList from "@/app/components/features/FeatureList/FeatureList";
@@ -8,14 +8,15 @@ import Dialog from "@/app/components/core/Dialog/Dialog";
 import useFeatureLoad from "@/app/hooks/useFeatureLoad";
 import Header from "@/app/components/core/Header/Header";
 
-import Edit from "@/assets/svg/edit.svg?react";
+// import Edit from "@/assets/svg/edit.svg?react";
 import Plus from "@/assets/svg/plus.svg?react";
+import Desktop from "@/assets/svg/desktop.svg?react";
 
-type FeatureViewProps = {
+type FeaturePageProps = {
 	projectUuid?: string;
 };
 
-const FeatureView = ({ projectUuid }: FeatureViewProps) => {
+const FeaturePage = ({ projectUuid }: FeaturePageProps) => {
 	const [isFormOpen, setIsFormOpen] = useState(false);
 	const { features } = useFeatureLoad();
 	const filteredFeatures = projectUuid
@@ -29,7 +30,7 @@ const FeatureView = ({ projectUuid }: FeatureViewProps) => {
 	return (
 		<>
 			<>
-				<Header className={styles.header} title="Features" icon={<Edit />} />
+				<Header className={styles.header} title="Features" icon={<Desktop />} />
 				<FeatureList features={filteredFeatures} />
 				<Button className={styles.fab} variant="rounded" onClick={handleClick}>
 					<Plus className={styles.icon} />
@@ -43,4 +44,4 @@ const FeatureView = ({ projectUuid }: FeatureViewProps) => {
 	);
 };
 
-export default FeatureView;
+export default FeaturePage;

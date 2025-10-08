@@ -8,9 +8,14 @@
 }
 
 .title {
-    font-size: 16px;
     height: 22px;
+    font-size: 16px;
     font-weight: bold;
+    color: var(--vscode-activityBar-inactiveForeground);
+}
+
+.switcher:hover .title {
+    color: var(--vscode-activityBar-foreground);
 }
 
 .indicator {
@@ -22,4 +27,8 @@
     width: 18px;
     height: 18px;
 	color: var(--vscode-activityBar-inactiveForeground);
+}
+
+.switcher:hover .icon {
+    color: var(--vscode-activityBar-foreground);
 }

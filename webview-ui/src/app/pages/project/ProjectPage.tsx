@@ -1,17 +1,17 @@
 import { useState } from "react";
-import styles from "./ProjectView.module.css";
+import styles from "./ProjectPage.module.css";
 
 import Button from "@/app/components/core/Button/Button";
+import Dialog from "@/app/components/core/Dialog/Dialog";
 import Header from "@/app/components/core/Header/Header";
+import ProjectForm from "@/app/components/projects/ProjectForm/ProjectForm";
+import ProjectList from "@/app/components/projects/ProjectList/ProjectList";
 import useProjectLoad from "@/app/hooks/useProjectLoad";
 
 import Edit from "@/assets/svg/edit.svg?react";
-import ProjectList from "@/app/components/projects/ProjectList/ProjectList";
-import Dialog from "@/app/components/core/Dialog/Dialog";
-import ProjectForm from "@/app/components/projects/ProjectForm/ProjectForm";
 
 
-const ProjectView = () => {
+const ProjectPage = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
     const { projects } = useProjectLoad();
 
@@ -34,4 +34,4 @@ const ProjectView = () => {
     );
 };
 
-export default ProjectView;
+export default ProjectPage;

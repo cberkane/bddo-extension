@@ -1,4 +1,4 @@
-import styles from "./Switcher.module.css";
+import styles from "./NavSwitcher.module.css";
 
 import Up from "@/assets/svg/up.svg?react";
 import Down from "@/assets/svg/down.svg?react";
@@ -9,8 +9,7 @@ type SwitcherProps = {
     onClick?: () => void;
 }
 
-// TODO: rename component to dropdown
-const Switcher = ({ title, indicator, onClick }: SwitcherProps) => {
+const NavSwitcher = ({ title, indicator, onClick }: SwitcherProps) => {
     return (
         <div className={styles.switcher} onClick={onClick}>
             <span className={styles.title}>{title}</span>
@@ -26,4 +25,4 @@ const Switcher = ({ title, indicator, onClick }: SwitcherProps) => {
     );
 }
 
-export default Switcher;
+export default NavSwitcher;
