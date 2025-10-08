@@ -53,10 +53,7 @@ const FeatureForm = ({
             data.completed = false;
             data.createdAt = new Date().toISOString();
             addFeature(data);
-
-            event.currentTarget.reset();
-            setIsValid(false);
-            setErrors(new Map());
+            resetForm();
         }
 
         if (feature && action === FeatureActionType.UPDATE_FEATURE) {
@@ -65,6 +62,12 @@ const FeatureForm = ({
         }
 
         onSuccess();
+    };
+
+    const resetForm = () => {
+        ref.current?.reset();
+        setIsValid(false);
+        setErrors(new Map());
     };
 
     return (

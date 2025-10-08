@@ -9,3 +9,27 @@
     border-top: 1px solid var(--vscode-editorWidget-border);
     margin: 16px 0;
 }
+
+.backNavSpacer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    
+    font-size: 16px;
+    color: var(--vscode-activityBar-inactiveForeground);
+}
+
+.backNavSpacer:hover {
+    color: var(--vscode-activityBar-foreground);
+}
+
+.backIcon {
+    width: 16px;
+    height: 16px;
+    color: var(--vscode-activityBar-inactiveForeground);
+}
+
+.backNavSpacer:hover .backIcon {
+    color: var(--vscode-activityBar-foreground);
+}

@@ -3,7 +3,7 @@ import { type Scenario, ScenarioActionType  } from "@/app/types/scenario";
 export const addScenario = (scenario: Partial<Scenario>) => {
     window.vscode.postMessage({
         command: ScenarioActionType.ADD_SCENARIO,
-        data: { scenario: { ...scenario } },
+        data: { scenario },
     });
 }
 
