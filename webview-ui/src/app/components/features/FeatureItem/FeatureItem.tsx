@@ -46,9 +46,9 @@ const FeatureItem = ({ feature }: FeatureItemProps) => {
         updateFeature(feature.uuid, updatedFeature);
     };
 
-    const gotoScenario = (event: React.MouseEvent): void => {
+    const gotoScenarios = (event: React.MouseEvent): void => {
         event.stopPropagation();
-        setView({ path: "scenarios", params: { uuid: feature.uuid } });
+        setView({ path: "scenarios", params: { featureUuid: feature.uuid } });
     };
 
     const formatDate = (date: string | undefined): string => {
@@ -67,7 +67,7 @@ const FeatureItem = ({ feature }: FeatureItemProps) => {
                                 onChange={checkFeature}
                             />
                         </div>
-                        <div className={`${feature.completed && styles.completed}`} onClick={gotoScenario}>
+                        <div className={`${feature.completed && styles.completed}`} onClick={gotoScenarios}>
                             <h3 className={styles.title}>{feature.title}</h3>
                             <p className={styles.info}>{project ? project.name : "All"}</p>
                             <p className={styles.info}> Last update at {feature.updatedAt ? formatDate(feature.updatedAt) : formatDate(feature.createdAt)}</p>

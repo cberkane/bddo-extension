@@ -4,6 +4,7 @@ import { StorageService } from "./services/storage.service";
 import { WebviewUIService } from "./services/webview-ui.service";
 import { FeaturesService } from "./services/features.service";
 import { ProjectsService } from "./services/projects.service";
+import { ScenariosService } from "./services/scenarios.service";
 
 export class Inject {
 	private static context: ExtensionContext;
@@ -12,6 +13,7 @@ export class Inject {
 	private static storageService: StorageService;
 	private static featuresService: FeaturesService;
 	private static projectsService: ProjectsService;
+	private static scenariosService: ScenariosService;
 
 	static setContext(context: ExtensionContext) {
 		Inject.context = context;
@@ -43,5 +45,12 @@ export class Inject {
 			Inject.projectsService = new ProjectsService(Inject.context);
 		}
 		return Inject.projectsService;
+	}
+
+	static getScenariosService(): ScenariosService {
+		if (!Inject.scenariosService) {
+			Inject.scenariosService = new ScenariosService(Inject.context);
+		}
+		return Inject.scenariosService;
 	}
 }

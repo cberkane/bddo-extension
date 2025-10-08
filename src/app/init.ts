@@ -6,6 +6,7 @@ export function initExtension(context: vscode.ExtensionContext) {
 	const config = vscode.workspace.getConfiguration("bddo");
 	const featuresFilename = config.get<string>("featuresFilename")!;
 	const projectsFilename = config.get<string>("projectsFilename")!;
+	const scenariosFilename = config.get<string>("scenariosFilename")!;
 
 	Inject.setContext(context);
 	const storageService = Inject.getStorageService();
@@ -15,5 +16,8 @@ export function initExtension(context: vscode.ExtensionContext) {
 	storageService.initStorage(projectsFilename, {
 		projects: [],
 		currentProject: null,
+	});
+	storageService.initStorage(scenariosFilename, {
+		scenarios: [],
 	});
 }
