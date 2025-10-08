@@ -50,9 +50,9 @@ const ProjectItem = ({ generic, project, key }: ProjectItemProps) => {
     return (
         <>
             <>
-                <div className={styles.item} key={key}>
+                <div className={styles.item} key={key} onClick={handleClick}>
                     <Folder className={styles.folder} style={{ color: "#d7d348" }} />
-                    <section className={styles.content} onClick={handleClick}>
+                    <section className={styles.content}>
                         <div>
                             <h3>{project ? project.name : "All"}</h3>
                         </div>

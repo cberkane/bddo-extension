@@ -1,11 +1,11 @@
-/* BASE STYLES */
 .button {
-	background-color: var(--vscode-button-background);
+	padding: 6px 14px;
 	color: var(--vscode-button-foreground);
+	background-color: var(--vscode-button-background);
+	border-radius: 2px;
 	border: none;
-	padding: 0.5rem 1rem;
-	cursor: pointer;
 	outline: none;
+	cursor: pointer;
 }
 
 .button:hover {
@@ -17,7 +17,16 @@
 	cursor: not-allowed;
 }
 
-/* VARIANTS */
+.outline {
+	color: var(--vscode-button-background);
+	background-color: transparent;
+	border: 1px solid var(--vscode-button-background);
+}
+
+.outline:hover {
+	background-color: var(--vscode-activityBar-background);
+}
+
 .rounded {
 	display: flex;
 	align-items: center;

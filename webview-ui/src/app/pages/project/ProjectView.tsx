@@ -26,6 +26,7 @@ const ProjectView = () => {
                     </Button>
                 </div>
             </>
+            
             <Dialog open={isFormOpen} onClose={() => setIsFormOpen(false)}>
                 <ProjectForm onSuccess={() => setIsFormOpen(false)} />
             </Dialog>

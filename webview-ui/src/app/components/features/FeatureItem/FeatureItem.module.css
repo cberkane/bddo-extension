@@ -4,11 +4,10 @@
 	align-items: center;
 	padding: 4px 8px;
 	background-color: var(--vscode-activityBar-background);
-
-	border: 1px solid var(--vscode-editorWidget-border); /*change to darker color */
+	border: 1px solid var(--vscode-editorWidget-border);
 	border-radius: 6px;
-	cursor: pointer;
 	transition: background-color 0.2s ease;
+	cursor: pointer;
 }
 
 .item:hover {
@@ -21,9 +20,13 @@
 	gap: 8px;
 }
 
+.content .checkbox {
+	padding: 0 12px;
+}
+
 .content .title {
-	font-weight: 400;
-	font-size: 12px;
+	font-weight: 500;
+	font-size: 16px;
 	color: var(--vscode-editorForeground);
 }
 
@@ -33,14 +36,21 @@
 	opacity: 0.6;
 }
 
+.content .info {
+	font-size: 12px;
+	font-weight: 400;
+	color: var(--vscode-foreground);
+	opacity: 0.7;
+}
+
 .actions {
 	display: flex;
-	gap: 8px;
+	gap: 4px;
 }
 
 .actions .icon {
-	width: 16px;
-	height: 16px;
+	width: 22px;
+	height: 22px;
 	cursor: pointer;
 	color: var(--vscode-activityBar-inactiveForeground);
 }

@@ -1,28 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg
-	width="800px"
-	height="800px"
-	viewBox="0 0 24 24"
-	fill="none"
-	xmlns="http://www.w3.org/2000/svg"
->
-	<path d="M5 7.5H19L18 21H6L5 7.5Z" stroke="currentColor" stroke-linejoin="round" />
-	<path
-		d="M15.5 9.5L15 19"
-		stroke="currentColor"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-	/>
-	<path d="M12 9.5V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-	<path
-		d="M8.5 9.5L9 19"
-		stroke="currentColor"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-	/>
-	<path
-		d="M16 5H19C20.1046 5 21 5.89543 21 7V7.5H3V7C3 5.89543 3.89543 5 5 5H8M16 5L15 3H9L8 5M16 5H8"
-		stroke="currentColor"
-		stroke-linejoin="round"
-	/>
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+        d="M6 5H18M9 5V5C10.5769 3.16026 13.4231 3.16026 15 5V5M9 20H15C16.1046 20 17 19.1046 17 18V9C17 8.44772 16.5523 8 16 8H8C7.44772 8 7 8.44772 7 9V18C7 19.1046 7.89543 20 9 20Z"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

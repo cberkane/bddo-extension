@@ -7,7 +7,7 @@ type HeaderProps = {
 } & React.HTMLAttributes<HTMLElement>;
 
 const Header = ({ title, icon, ...rest }: HeaderProps) => {
-    const iconProps = { style: { width: "18px", height: "18px" } };
+    const iconProps = { style: { width: "16px", height: "16px" } };
     const clonedIcon = React.cloneElement(icon, iconProps);
 
     return (

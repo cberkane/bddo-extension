@@ -28,6 +28,7 @@ const App = () => {
                         onClick={handleClick}
                     />
                 )}
+                <hr className={styles.divider} />
                 <Views />
             </div>
         </ViewChangeContext.Provider>

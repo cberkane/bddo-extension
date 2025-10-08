@@ -29,12 +29,13 @@ const FeatureView = ({ projectUuid }: FeatureViewProps) => {
 	return (
 		<>
 			<>
-				<Header title="Features" icon={<Edit />} className={styles.header} />
+				<Header className={styles.header} title="Features" icon={<Edit />} />
 				<FeatureList features={filteredFeatures} />
-				<Button onClick={handleClick} variant="rounded" className={styles.fab}>
+				<Button className={styles.fab} variant="rounded" onClick={handleClick}>
 					<Plus className={styles.icon} />
 				</Button>
 			</>
+			
 			<Dialog open={isFormOpen} onClose={() => setIsFormOpen(false)}>
 				<FeatureForm onSuccess={() => setIsFormOpen(false)} />
 			</Dialog>

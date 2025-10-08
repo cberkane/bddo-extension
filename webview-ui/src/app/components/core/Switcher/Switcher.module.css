@@ -1,0 +1,25 @@
+.switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 26px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 16px;
+    height: 22px;
+    font-weight: bold;
+}
+
+.indicator {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+	color: var(--vscode-activityBar-inactiveForeground);
+}

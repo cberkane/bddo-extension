@@ -1,22 +1,41 @@
-.label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 14rem;
-    color: var(--vscode-input-foreground);
+/* TODO: check for correction */
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .checkbox {
-    width: 1.1em;
-    height: 1.1em;
-    border: 1px solid var(--vscode-input-border);
-    border-radius: 4px;
-    margin-right: 0.5em;
-    background: var(--vscode-input-background);
-    accent-color: var(--vscode-button-background);
-    transition: border-color 0.2s;
+	appearance: none;
+	box-sizing: border-box;
+	width: 18px;
+	height: 18px;
+	border: 1px solid var(--vscode-input-border);
+	border-radius: 4px;
+	background-color: var(--vscode-checkbox-background, transparent);
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+	transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
-.checkbox:focus {
-    outline: 2px solid var(--vscode-focusBorder);
+.checkbox::after {
+	content: "";
+	width: 10px;
+	height: 5px;
+	border: 2px solid var(--vscode-checkbox-foreground, var(--vscode-foreground));
+	border-top: 0;
+	border-left: 0;
+	transform: rotate(45deg) scale(0);
+	transform-origin: center;
+	transition: transform 120ms ease-in-out;
+}
+
+.checkbox:checked::after {
+	transform: rotate(45deg) scale(1);
+}
+
+.checkbox:focus-visible {
+	outline: 1px solid var(--vscode-focusBorder);
+	outline-offset: 2px;
 }

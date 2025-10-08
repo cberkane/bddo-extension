@@ -3,3 +3,9 @@
     margin: 0 auto;
     padding: 16px;
 }
+
+.divider {
+    border: none;
+    border-top: 1px solid var(--vscode-editorWidget-border);
+    margin: 16px 0;
+}

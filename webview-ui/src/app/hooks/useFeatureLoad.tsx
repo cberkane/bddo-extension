@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { FeatureActionType, type Feature } from "@/app/types/feature";
 
+// TODO: add loading state
 const useFeatureLoad = () => {
     const [features, setFeatures] = useState<Feature[]>([]);
     const [error, setError] = useState<string | null>(null);
