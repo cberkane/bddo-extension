@@ -26,7 +26,7 @@ const ProjectItem = ({ generic, project, key }: ProjectItemProps) => {
         if (!generic && project) {
             setView({ path: 'features', params: { projectUuid: project.uuid } });
         } else {
-            setView({ path: 'features' });
+            setView({ path: 'features', params: {} });
         }
     }
     

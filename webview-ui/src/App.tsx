@@ -12,9 +12,9 @@ const App = () => {
 
     const switchView = () => {
         if (view.path === "features") {
-            setView({ path: "projects" });
+            setView({ path: "projects", params: {} });
         } else {
-            setView({ path: "features" });
+            setView({ path: "features", params: {} });
         }
     }
 
