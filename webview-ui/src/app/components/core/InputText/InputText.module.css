@@ -1,14 +1,18 @@
 .inputGroup {
 	display: flex;
 	flex-direction: column;
-	gap: 0.25rem;
-	margin-bottom: 1rem;
+	gap: 4px;
 }
 
 .label {
 	color: var(--vscode-input-foreground);
-	font-size: 1rem;
-	margin-bottom: 0.25rem;
+	font-size: 14px;
+	margin-bottom: 4px;
+}
+
+.asterisk {
+	color: var(--vscode-errorForeground);
+	margin-left: 0.25rem;
 }
 
 .input {
@@ -16,19 +20,14 @@
 	color: var(--vscode-input-foreground);
 	border: 1px solid var(--vscode-input-border);
 	border-radius: 4px;
-	padding: 0.5rem;
-	font-size: 1rem;
+	padding: 8px 10px;
+	font-size: 14px;
 	transition: border-color 0.2s;
 }
 
 .input:focus {
 	border-color: var(--vscode-focusBorder);
 	outline: none;
-}
-
-.asterisk {
-	color: var(--vscode-errorForeground);
-	margin-left: 0.25rem;
 }
 
 .error {

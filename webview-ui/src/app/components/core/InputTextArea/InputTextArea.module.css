@@ -1,0 +1,39 @@
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    color: var(--vscode-input-foreground);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.asterisk {
+    color: var(--vscode-errorForeground);
+    margin-left: 0.25rem;
+}
+
+.textarea {
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    padding: 8px;
+    min-height: 100px;
+    resize: vertical;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+.textarea:focus {
+    border-color: var(--vscode-focusBorder);
+    outline: none;
+}
+
+.error {
+    color: var(--vscode-errorForeground);
+    font-size: 0.875rem;
+    margin-top: -0.25rem;
+}

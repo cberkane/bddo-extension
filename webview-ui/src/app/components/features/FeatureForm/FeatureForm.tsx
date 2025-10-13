@@ -49,16 +49,14 @@ const FeatureForm = ({
             projectUuid: formData.get("projectUuid") as string | undefined,
         };
 
-        if (action === FeatureActionType.ADD_FEATURE) {
+        if (feature && action === FeatureActionType.UPDATE_FEATURE) {
+            data.updatedAt = new Date().toISOString();
+            updateFeature(feature.uuid, data);
+        } else {
             data.completed = false;
             data.createdAt = new Date().toISOString();
             addFeature(data);
             resetForm();
-        }
-
-        if (feature && action === FeatureActionType.UPDATE_FEATURE) {
-            data.updatedAt = new Date().toISOString();
-            updateFeature(feature.uuid, data);
         }
 
         onSuccess();
@@ -71,7 +69,7 @@ const FeatureForm = ({
     };
 
     return (
-        <form ref={ref} className={styles.form} onInput={handleInput} onSubmit={handleSubmit}>
+        <form className={styles.form} ref={ref} onInput={handleInput} onSubmit={handleSubmit}>
             <InputText
                 name="title"
                 label="Title"
@@ -88,9 +86,11 @@ const FeatureForm = ({
                 options={projectOptions}
                 error={errors.get("projectUuid")}
             />
-            <Button type="submit" disabled={!isValid}>
-                {action === FeatureActionType.UPDATE_FEATURE ? "Update Feature" : "Add Feature"}
-            </Button>
+            <div className={styles.actions}>
+                <Button type="submit" disabled={!isValid}>
+                    {action === FeatureActionType.UPDATE_FEATURE ? "Update Feature" : "Add Feature"}
+                </Button>
+            </div>
         </form>
     );
 };

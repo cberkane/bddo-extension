@@ -57,7 +57,7 @@ const ProjectForm = ({
 	return (
 		<form
 			ref={ref}
-			className={styles.projectForm}
+			className={styles.form}
 			onSubmit={handleSubmit}
 			onInput={handleInput}
 		>

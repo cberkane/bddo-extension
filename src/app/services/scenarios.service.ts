@@ -42,7 +42,7 @@ export class ScenariosService extends StorageService {
 			const scenarios = file.scenarios;
 			const newScenario = { uuid: uuid(), ...scenario };
 
-			file.scenarios = [newScenario, ...scenarios];
+			file.scenarios = [...scenarios, newScenario];
 			this.saveJsonData(this.fileName, file);
 			return {
 				success: true,

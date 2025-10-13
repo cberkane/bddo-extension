@@ -4,14 +4,16 @@ import styles from "./FeatureItem.module.css";
 import Button from "@/app/components/core/Button/Button";
 import Checkbox from "@/app/components/core/Checkbox/Checkbox";
 import Dialog from "@/app/components/core/Dialog/Dialog";
+import FeatureForm from "@/app/components/features/FeatureForm/FeatureForm";
 import { ViewChangeContext } from "@/app/contexts/core/ViewChangeContext";
 import { getFormattedDate } from "@/app/helpers/core/date.js";
 import { deleteFeature, updateFeature } from "@/app/helpers/features/featureMessage";
 import useProjectLoad from "@/app/hooks/useProjectLoad";
 import { FeatureActionType, type Feature } from "@/app/types/feature";
+
+import Folder from "@/assets/svg/folder.svg?react";
 import Edit from "@/assets/svg/edit.svg?react";
 import Trash from "@/assets/svg/trash.svg?react";
-import FeatureForm from "../FeatureForm/FeatureForm.js";
 
 type FeatureItemProps = {
     feature: Feature;
@@ -69,8 +71,13 @@ const FeatureItem = ({ feature }: FeatureItemProps) => {
                         </div>
                         <div className={`${feature.completed && styles.completed}`} onClick={gotoScenarios}>
                             <h3 className={styles.title}>{feature.title}</h3>
-                            <p className={styles.info}>{project ? project.name : "All"}</p>
-                            <p className={styles.info}> Last update at {feature.updatedAt ? formatDate(feature.updatedAt) : formatDate(feature.createdAt)}</p>
+                            <div className={styles.projectInfo}>
+                                <Folder className={styles.icon} style={{ color: "#d7d348" }} />
+                                <p className={styles.info}>{project ? project.name : "All"}</p>
+                            </div>
+                            <div className={styles.dateInfo}>
+                                <p className={styles.info}> Last update at {feature.updatedAt ? formatDate(feature.updatedAt) : formatDate(feature.createdAt)}</p>
+                            </div>
                         </div>
                     </div>
                     <div className={styles.actions}>
@@ -82,8 +89,10 @@ const FeatureItem = ({ feature }: FeatureItemProps) => {
 
             <Dialog open={showDeleteDialog} onClose={() => setShowDeleteDialog(false)}>
                 <div className={styles.deleteDialog}>
-                    <h2>Confirm Deletion</h2>
-                    <p>Are you sure you want to permanently delete this feature?</p>
+                    <div className={styles.content}>
+                        <h2>Confirm Deletion</h2>
+                        <p>Are you sure you want to permanently delete this feature?</p>
+                    </div>
                     <div className={styles.actions}>
                         <Button variant="outline" onClick={() => setShowDeleteDialog(false)}>Cancel</Button>
                         <Button onClick={() => onDelete()}>Delete</Button>

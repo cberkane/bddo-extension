@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./ScenarioPage.module.css";
 
-import Button from "@/app/components/core/Button/Button";
+
 import Header from "@/app/components/core/Header/Header";
 import ScenarioList from "@/app/components/scenarios/ScenarioList/ScenarioList";
 import useScenarioLoad from "@/app/hooks/useScenarioLoad";
@@ -27,14 +27,9 @@ const ScenarioPage = ({ featureUuid }: ScenarioPageProps) => {
         <>
             <>
                 <Header className={styles.header} title="Scenarios" icon={<Desktop />} />
-                <ScenarioList scenarios={filteredScenarios} />
-                <div className={styles.actions}>
-                    <Button onClick={() => setIsFormOpen(true)}>
-                        Add Scenario
-                    </Button>
-                </div>
+                <ScenarioList scenarios={filteredScenarios} onAddScenario={() => setIsFormOpen(true)} />
             </>
-            <Dialog open={isFormOpen} onClose={() => setIsFormOpen(false)}>
+            <Dialog open={isFormOpen} width="500px" onClose={() => setIsFormOpen(false)}>
                 <ScenarioForm featureUuid={featureUuid} onSuccess={handleFormSuccess} />
             </Dialog>
         </>

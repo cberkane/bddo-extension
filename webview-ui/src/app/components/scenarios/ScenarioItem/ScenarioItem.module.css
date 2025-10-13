@@ -1,0 +1,97 @@
+.item {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 16px;
+}
+
+.item h2 {
+	font-size: 16px;
+	font-weight: 500;
+	margin: 0;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+}
+
+.header h2 {
+	margin-right: 8px;
+}
+
+.headerIcon {
+	width: 18px;
+	height: 18px;
+	margin-right: 2px;
+	color: var(--vscode-activityBar-inactiveForeground);
+	cursor: pointer;
+}
+
+.headerIcon:hover {
+	color: var(--vscode-activityBar-foreground);
+}
+
+.content h3 {
+	font-size: 14px;
+	color: var(--vscode-button-background);
+	margin: 0;
+}
+
+.content p {
+	font-size: 12px;
+}
+
+.content h3::before {
+	content: "# ";
+	color: var(--vscode-button-background);
+}
+
+.content p {
+	font-size: 14px;
+	margin: 0;
+
+	display: flex;
+	align-items: flex-end;
+	gap: 4px;
+}
+
+.iconVerified,
+.iconWarning,
+.iconError {
+	width: 16px;
+	height: 16px;
+    vertical-align: middle;
+	opacity: 0.7;
+}
+
+.iconVerified {
+    color: limegreen;
+}
+
+.iconWarning {
+    color: darkorange;
+}
+
+.iconError {
+    color: crimson;
+}
+
+.deleteDialog {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.deleteDialogContent {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.deleteDialogActions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+}

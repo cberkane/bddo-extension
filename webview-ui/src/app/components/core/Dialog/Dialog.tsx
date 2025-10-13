@@ -6,11 +6,12 @@ import Close from "@/assets/svg/close.svg?react";
 
 type DialogProps = {
     open: boolean;
+    width?: string;
     children: React.ReactNode;
     onClose: () => void;
 }
 
-const Dialog = ({ open, children, onClose }: DialogProps) => {
+const Dialog = ({ open, children, onClose, width }: DialogProps) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     useEffect(() => {
@@ -26,7 +27,11 @@ const Dialog = ({ open, children, onClose }: DialogProps) => {
     };
 
     return (
-        <dialog ref={dialogRef} onCancel={handleCancel} className={styles.dialog}>
+        <dialog className={styles.dialog}
+            ref={dialogRef}
+            style={{ width }}
+            onCancel={handleCancel}
+        >
             <div>
                 <button onClick={onClose} className={styles.dialogButton}>
                     <Close className={styles.dialogCloseIcon} />
