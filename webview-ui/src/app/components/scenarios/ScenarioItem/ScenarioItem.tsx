@@ -3,7 +3,8 @@ import styles from "./ScenarioItem.module.css";
 
 import Button from "@/app/components/core/Button/Button";
 import Dialog from "@/app/components/core/Dialog/Dialog";
-import { deleteScenario } from "@/app/helpers/scenarios/scenarioMessage";
+import ScenarioForm from "@/app/components/scenarios/ScenarioForm/ScenarioForm";
+import { deleteScenario, updateScenario } from "@/app/helpers/scenarios/scenarioMessage";
 import { ScenarioActionType, ScenarioType, type Scenario } from "@/app/types/scenario";
 
 import Edit from "@/assets/svg/edit.svg?react";
@@ -11,7 +12,7 @@ import Error from "@/assets/svg/error.svg?react";
 import Trash from "@/assets/svg/trash.svg?react";
 import Verified from "@/assets/svg/verified.svg?react";
 import Warning from "@/assets/svg/warning.svg?react";
-import ScenarioForm from "../ScenarioForm/ScenarioForm";
+import Checkbox from "../../core/Checkbox/Checkbox";
 
 type ScenarioItemProps = {
     key: string;
@@ -19,7 +20,7 @@ type ScenarioItemProps = {
     scenario: Scenario;
 };
 
-const ScenarioItem = ({ key, position, scenario }: ScenarioItemProps) => {
+const ScenarioItem = ({ key, scenario }: ScenarioItemProps) => {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [showEditDialog, setShowEditDialog] = useState(false);
 
@@ -51,25 +52,42 @@ const ScenarioItem = ({ key, position, scenario }: ScenarioItemProps) => {
         deleteScenario(scenario.uuid);
     };
 
+    const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.stopPropagation();
+        const updatedScenario = { ...scenario, completed: e.target.checked };
+        updateScenario(scenario.uuid, updatedScenario);
+    }
+
     return (
         <>
             <div className={styles.item} key={key}>
-                <div className={styles.header}>
-                    <h2>{position} - {scenario.title}</h2>
-                    <Edit className={styles.headerIcon} onClick={handleEdit} />
-                    <Trash className={styles.headerIcon} onClick={handleDelete} />
-                </div>
-                <div className={styles.content}>
-                    <h3>Scenario</h3>
-                    <p>{statusIcon} {scenario.type}</p>
-                </div>
-                <div className={styles.content}>
-                    <h3>Given</h3>
-                    <p>{scenario.given}</p>
-                </div>
-                <div className={styles.content}>
-                    <h3>Expected</h3>
-                    <p>{scenario.expected}</p>
+                <aside className={styles.aside}>
+                    <Checkbox
+                        defaultChecked={scenario.completed}
+                        name={scenario.title}
+                        onChange={handleCheck}
+                    />
+                </aside>
+                <div className={styles.body}>
+                    <div className={styles.content}>
+                        <p><span className={styles.label}>Scenario: </span>{scenario.title} {statusIcon}</p>
+                    </div>
+                    <div className={styles.content}>
+                        <p><span className={styles.label}>Given: </span>{scenario.given}</p>
+                    </div>
+                    <div className={styles.content}>
+                        <p><span className={styles.label}>Expected: </span>{scenario.expected}</p>
+                    </div>
+                    <div className={styles.actions}>
+                        <span>
+                            <Edit className={styles.actionIcon} onClick={handleEdit} />
+                            Edit
+                        </span>
+                        <span>
+                            <Trash className={styles.actionIcon} onClick={handleDelete} />
+                            Delete
+                        </span>
+                    </div>
                 </div>
             </div>
 

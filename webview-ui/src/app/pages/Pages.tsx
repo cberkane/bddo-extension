@@ -1,6 +1,8 @@
 import { useContext } from "react";
 
-import { ViewChangeContext, ViewPath } from "@/app/contexts/core/ViewChangeContext.js";
+import type { Feature } from "@/app/types/feature";
+import { ViewChangeContext, ViewPath } from "@/app/contexts/core/ViewChangeContext";
+
 import FeaturePage from "@/app/pages/feature/FeaturePage";
 import ProjectPage from "@/app/pages/project/ProjectPage";
 import ScenarioPage from "@/app/pages/scenario/ScenarioPage";
@@ -12,9 +14,9 @@ const Views = () => {
         case ViewPath.Projects:
             return <ProjectPage />;
         case ViewPath.Features:
-            return <FeaturePage projectUuid={view.params?.projectUuid} />;
+            return <FeaturePage projectUuid={view.params?.projectUuid as string} />;
         case ViewPath.Scenarios:
-            return <ScenarioPage featureUuid={view.params?.featureUuid} />;
+            return <ScenarioPage feature={view.params?.feature as Feature} />;
         default:
             return <FeaturePage />;
     }

@@ -6,7 +6,7 @@ import Checkbox from "@/app/components/core/Checkbox/Checkbox";
 import Dialog from "@/app/components/core/Dialog/Dialog";
 import FeatureForm from "@/app/components/features/FeatureForm/FeatureForm";
 import { ViewChangeContext } from "@/app/contexts/core/ViewChangeContext";
-import { getFormattedDate } from "@/app/helpers/core/date.js";
+import { getFormattedDate } from "@/app/helpers/core/date";
 import { deleteFeature, updateFeature } from "@/app/helpers/features/featureMessage";
 import useProjectLoad from "@/app/hooks/useProjectLoad";
 import { FeatureActionType, type Feature } from "@/app/types/feature";
@@ -50,7 +50,7 @@ const FeatureItem = ({ feature }: FeatureItemProps) => {
 
     const gotoScenarios = (event: React.MouseEvent): void => {
         event.stopPropagation();
-        setView({ path: "scenarios", params: { featureUuid: feature.uuid } });
+        setView({ path: "scenarios", params: { featureUuid: feature.uuid, feature } });
     };
 
     const formatDate = (date: string | undefined): string => {

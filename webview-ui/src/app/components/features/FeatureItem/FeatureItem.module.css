@@ -90,3 +90,7 @@
 	justify-content: flex-end;
 	gap: 8px;
 }
+
+.title {
+	margin-bottom: 8px;
+}
