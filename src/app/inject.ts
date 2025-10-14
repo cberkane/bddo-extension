@@ -15,7 +15,7 @@ export class Inject {
 	private static projectsService: ProjectsService;
 	private static scenariosService: ScenariosService;
 
-	static setContext(context: ExtensionContext) {
+	static setContext(context: ExtensionContext): void {
 		Inject.context = context;
 	}
 

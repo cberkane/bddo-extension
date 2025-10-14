@@ -15,7 +15,7 @@ export class ScenariosController {
 		this.scenariosService = Inject.getScenariosService();
 	}
 
-	handle(message: Message<any>) {
+	handle(message: Message<any>): void {
 		switch (message.command) {
 			case ScenarioActionType.LOAD_SCENARIOS_REQUEST:
 				this.listScenarios();
@@ -42,12 +42,12 @@ export class ScenariosController {
 		this.sendResponse(response);
 	}
 
-	private updateScenario(uuid: string, updatedScenario: Partial<Scenario>) {
+	private updateScenario(uuid: string, updatedScenario: Partial<Scenario>): void {
 		const response = this.scenariosService.updateScenario(uuid, updatedScenario);
 		this.sendResponse(response);
 	}
 
-	private deleteScenario(uuid: string) {
+	private deleteScenario(uuid: string): void {
 		const response = this.scenariosService.deleteScenario(uuid);
 		this.sendResponse(response);
 	}

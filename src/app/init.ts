@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 
 import { Inject } from "@app/inject";
 
-export function initExtension(context: vscode.ExtensionContext) {
+export function initExtension(context: vscode.ExtensionContext): void {
 	const config = vscode.workspace.getConfiguration("bddo");
 	const featuresFilename = config.get<string>("featuresFilename")!;
 	const projectsFilename = config.get<string>("projectsFilename")!;

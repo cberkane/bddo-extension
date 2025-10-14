@@ -15,7 +15,7 @@ export class ProjectsController {
 		this.projectsService = Inject.getProjectsService();
 	}
 
-    handle(message: Message<any>) {
+    handle(message: Message<any>): void {
         switch (message.command) {
             case ProjectActionType.LOAD_PROJECTS_REQUEST:
                 this.listProjects();

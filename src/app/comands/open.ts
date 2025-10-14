@@ -5,7 +5,7 @@ import { ProjectsController } from "@app/controllers/projects.controller";
 import { ScenariosController } from "@app/controllers/scenarios.controller";
 import { Inject } from "@app/inject";
 
-export const open = (context: ExtensionContext) => {
+export const open = (context: ExtensionContext): void => {
 	const webviewUIService = Inject.getWebviewUIService();
 	const panel = webviewUIService.initOrOpen(context);
 

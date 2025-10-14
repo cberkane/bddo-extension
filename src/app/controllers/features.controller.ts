@@ -15,7 +15,7 @@ export class FeaturesController {
 		this.featuresService = Inject.getFeaturesService();
 	}
 
-	handle(message: Message<any>) {
+	handle(message: Message<any>): void {
 		switch (message.command) {
 			case FeatureActionType.LOAD_FEATURES_REQUEST:
 				this.listFeatures();
