@@ -1,28 +1,10 @@
-.iconVerified,
-.iconWarning,
-.iconError {
-	width: 14px;
-	height: 14px;
-	vertical-align: middle;
-	opacity: 0.6;
-}
-.iconVerified {
-	color: limegreen;
-}
-.iconWarning {
-	color: darkorange;
-}
-.iconError {
-	color: crimson;
-}
-
 .item {
 	display: flex;
 }
 
 .aside {
 	position: relative;
-	border-right: 1px solid var(--vscode-activityBar-inactiveForeground);
+	border-right: 1px solid var(--vscode-input-border);
 }
 
 .aside > *:first-child {
@@ -37,7 +19,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-	padding: 16px;
+	padding: 4px 24px;
 }
 
 .content {
@@ -45,14 +27,15 @@
 }
 
 .label {
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--vscode-textLink-activeForeground);
+}
+
+.illustrated {
 	display: flex;
 	align-items: flex-end;
 	gap: 4px;
-	margin: 0;
-	font-size: 14px;
-	font-weight: 500;
-	color: var(--vscode-button-background); /* TODO: change */
-	margin-right: 4px;
 }
 
 .deleteDialog {
@@ -75,19 +58,33 @@
 }
 
 .actions {
+	margin-top: 8px;
+	
 	display: flex;
-	gap: 4px;
-	padding: 0 8px;
+	gap: 6px;
+}
+
+.action {
+	display: flex;
+	align-items: flex-end;
+
+	color: var(--vscode-activityBar-inactiveForeground);
+	cursor: pointer;
 }
 
 .actionIcon {
 	width: 18px;
 	height: 18px;
 	margin-right: 2px;
+	
 	color: var(--vscode-activityBar-inactiveForeground);
 	cursor: pointer;
 }
 
-.actionIcon:hover {
+.action:hover {
+	color: var(--vscode-activityBar-foreground);
+}
+
+.action:hover .actionIcon {
 	color: var(--vscode-activityBar-foreground);
 }

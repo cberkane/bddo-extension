@@ -2,17 +2,15 @@ import { useState } from "react";
 import styles from "./ScenarioItem.module.css";
 
 import Button from "@/app/components/core/Button/Button";
+import Checkbox from "@/app/components/core/Checkbox/Checkbox";
 import Dialog from "@/app/components/core/Dialog/Dialog";
 import ScenarioForm from "@/app/components/scenarios/ScenarioForm/ScenarioForm";
 import { deleteScenario, updateScenario } from "@/app/helpers/scenarios/scenarioMessage";
-import { ScenarioActionType, ScenarioType, type Scenario } from "@/app/types/scenario";
+import { ScenarioActionType, type Scenario } from "@/app/types/scenario";
 
 import Edit from "@/assets/svg/edit.svg?react";
-import Error from "@/assets/svg/error.svg?react";
 import Trash from "@/assets/svg/trash.svg?react";
-import Verified from "@/assets/svg/verified.svg?react";
-import Warning from "@/assets/svg/warning.svg?react";
-import Checkbox from "../../core/Checkbox/Checkbox";
+import ScenarioIcon from "../ScenarioIcon/ScenraioIcon";
 
 type ScenarioItemProps = {
     key: string;
@@ -23,20 +21,6 @@ type ScenarioItemProps = {
 const ScenarioItem = ({ key, scenario }: ScenarioItemProps) => {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [showEditDialog, setShowEditDialog] = useState(false);
-
-    const getStatusIcon = () => {
-        switch (scenario.type) {
-            case ScenarioType.HAPPY_PATH:
-                return <Verified className={styles.iconVerified} />;
-            case ScenarioType.EDGE_CASE:
-                return <Warning className={styles.iconWarning} />;
-            case ScenarioType.ERROR:
-                return <Error className={styles.iconError} />;
-            default:
-                return null;
-        }
-    }
-    const statusIcon = getStatusIcon();
 
     const handleEdit = (event: React.MouseEvent): void => {
         event.stopPropagation();
@@ -69,28 +53,30 @@ const ScenarioItem = ({ key, scenario }: ScenarioItemProps) => {
                     />
                 </aside>
                 <div className={styles.body}>
-                    <div className={styles.content}>
-                        <p><span className={styles.label}>Scenario: </span>{scenario.title} {statusIcon}</p>
+                    <div>
+                        <p className={styles.label}>Scenario :</p> 
+                        <p className={styles.illustrated}>{scenario.title} <ScenarioIcon type={scenario.type} opacity={0.5} /></p>
                     </div>
-                    <div className={styles.content}>
-                        <p><span className={styles.label}>Given: </span>{scenario.given}</p>
+                    <div>
+                        <p className={styles.label}>Given :</p> 
+                        <p>{scenario.given}</p>
                     </div>
-                    <div className={styles.content}>
-                        <p><span className={styles.label}>Expected: </span>{scenario.expected}</p>
+                    <div>
+                        <p className={styles.label}>Expected :</p> 
+                        <p>{scenario.expected}</p>
                     </div>
                     <div className={styles.actions}>
-                        <span>
-                            <Edit className={styles.actionIcon} onClick={handleEdit} />
-                            Edit
+                        <span className={styles.action} onClick={handleEdit}>
+                            <Edit className={styles.actionIcon} />
+                            <span>Edit</span>
                         </span>
-                        <span>
-                            <Trash className={styles.actionIcon} onClick={handleDelete} />
-                            Delete
+                        <span className={styles.action} onClick={handleDelete}>
+                            <Trash className={styles.actionIcon} />
+                            <span>Delete</span>
                         </span>
                     </div>
                 </div>
             </div>
-
             <Dialog open={showDeleteDialog} onClose={() => setShowDeleteDialog(false)}>
                 <div className={styles.deleteDialog}>
                     <div className={styles.deleteDialogContent}>
@@ -103,7 +89,6 @@ const ScenarioItem = ({ key, scenario }: ScenarioItemProps) => {
                     </div>
                 </div>
             </Dialog>
-
             <Dialog open={showEditDialog} width="500px" onClose={() => setShowEditDialog(false)}>
                 <ScenarioForm
                     featureUuid={scenario.featureUuid}

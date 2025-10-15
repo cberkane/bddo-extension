@@ -1,7 +1,32 @@
 .header {
-    margin-bottom: 16px;
+	margin-bottom: 16px;
 }
 
-.featureContainer {
-    margin-bottom: 24px;
+.subHeader {
+	margin-bottom: 24px;
+}
+
+.info {
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.infoGroup {
+	margin-top: 4px;
+	display: flex;
+}
+
+.infoGroup span {
+	display: flex;
+	align-items: flex-end;
+	gap: 4px;
+	padding: 0 8px;
+}
+
+.infoGroup span:first-child {
+	padding-left: 0;
+}
+
+.infoGroup span:not(:last-child) {
+	border-right: 1px solid var(--vscode-editorWidget-border);
 }

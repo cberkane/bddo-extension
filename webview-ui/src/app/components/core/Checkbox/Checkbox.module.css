@@ -12,7 +12,7 @@
 	place-content: center;
 	width: 18px;
 	height: 18px;
-	background-color: var(--vscode-checkbox-background, transparent);
+	background-color: var(--vscode-checkbox-background);
 	border: 1px solid var(--vscode-input-border);
 	border-radius: 4px;
 	transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -26,9 +26,10 @@
 	border: 2px solid var(--vscode-checkbox-foreground, var(--vscode-foreground));
 	border-top: 0;
 	border-right: 0;
-	
+
 	transform: rotate(-45deg) scale(0);
 	transform-origin: center;
+	translate: 0 -2px;
 	transition: transform 100ms ease-in-out;
 }
 
