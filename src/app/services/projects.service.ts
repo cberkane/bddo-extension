@@ -6,6 +6,7 @@ import { ProjectFile, Project, ProjectData } from "@app/types/project.type";
 import { Response } from "@app/types/response.type";
 
 export class ProjectsService extends StorageService {
+	
 	private fileName: string;
 
 	constructor(context: vscode.ExtensionContext) {
@@ -49,8 +50,8 @@ export class ProjectsService extends StorageService {
 
 			const created = { uuid: uuid(), ...data };
 			const projects = [created, ...file.projects];
-			const updatedFile: ProjectFile = { ...file, projects };
-			this.saveJsonData<ProjectFile>(this.fileName, updatedFile);
+			file.projects = projects;
+			this.saveJsonData<ProjectFile>(this.fileName, file);
 			return {
 				data: projects,
 				success: true,
@@ -60,6 +61,25 @@ export class ProjectsService extends StorageService {
 			return {
 				success: false,
 				error: "Failed to save the new project",
+			};
+		}
+	}
+
+	removeProject(projectId: string): Response<Project[]> {
+		try {
+			const file = this.readJsonData<ProjectFile>(this.fileName);
+			const projects = file.projects.filter((p) => p.uuid !== projectId);
+			file.projects = projects;
+			this.saveJsonData<ProjectFile>(this.fileName, file);
+			return {
+				data: projects,
+				success: true,
+			};
+		} catch (error) {
+			vscode.window.showErrorMessage("Failed to remove project");
+			return {
+				success: false,
+				error: "Failed to remove the project",
 			};
 		}
 	}

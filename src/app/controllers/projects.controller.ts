@@ -23,6 +23,9 @@ export class ProjectsController {
             case ProjectActionType.ADD_PROJECT:
                 this.createProject(message.data.project);
                 break;
+			case ProjectActionType.DELETE_PROJECT:
+                this.deleteProject(message.data.uuid);
+                break;
         }
     }
 
@@ -35,6 +38,11 @@ export class ProjectsController {
         const response = this.projectsService.addProject(project);
         this.sendResponse(response);
     }
+
+	private deleteProject(projectId: string): void {
+		const response = this.projectsService.removeProject(projectId);
+		this.sendResponse(response);
+	}
 
 	private sendResponse(response: Response<Project[]>): void {
 		const { data, success, error } = response;

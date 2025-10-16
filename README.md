@@ -1,71 +1,142 @@
-# bddo README
+# BDDo
 
-This is the README for your extension "bddo". After writing up a brief description, we recommend including the following sections.
+A VSCode extension for managing development tasks using Gherkin syntax (BDD - Behavior-Driven Development).
 
-## Features
+![VSCode](https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visual-studio-code)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## 🎯 Overview
 
-For example if there is an image subfolder under your extension project workspace:
+BDDo helps developers organize their tasks and test scenarios using an inspired version of the Given-When-Then syntax from Behavior-Driven Development. Manage your features, tasks, and test cases directly within VSCode.
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![BDDo: add feature demo](./docs/demo_feature_add.gif)
 
-## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+![BDDo: add project demo](./docs/demo_project_add.gif)
 
-## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## ✨ Features
 
-For example:
+### Current Implementation
 
-This extension contributes the following settings:
+- **📁 Project Management**
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+  - Create and delete folders
+  - Hierarchical organization of tasks
 
-## Known Issues
+- **✅ Task Management**
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+  - Create, update, and delete tasks
+  - Associate tasks with projects or keep them standalone
 
-## Release Notes
+- **🧪 Scenario Definition**
 
-Users appreciate release notes as you update your extension.
+  - Add, update, and delete scenarios for each task
+  - Use an inspired Gherkin syntax (given, expected)
+  - Categorize scenarios:
+    - Happy Path
+    - Edge Cases
+    - Error Handling
 
-### 1.0.0
+- **🎨 User Interface**
+  - Clean, intuitive graphical interface
+  - Built with React for smooth interactions
+  - Integrated directly into VSCode
 
-Initial release of ...
+## 🛠️ Tech Stack
 
-### 1.0.1
+- **Frontend**: React 18
+- **Language**: TypeScript
+- **Platform**: VSCode Extension API
 
-Fixed issue #.
+## 🚀 Installation
 
-### 1.1.0
+### Development Mode
 
-Added features X, Y, and Z.
+1. Clone the repository:
+
+```bash
+git clone https://github.com/cberkane/bddo.git
+cd bddo
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Launch in VSCode debugger:
+
+   - Press `F5` or use the Debug panel
+   - Select "Launch Extension"
+
+4. Open BDDo:
+   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
+   - Type: `BDDo: open`
+
+### Marketplace Installation
+
+_Coming soon - Extension will be published to VSCode Marketplace_
+
+## 📖 Usage
+
+### Creating a Project
+
+1. Open BDDo (`Cmd/Ctrl+Shift+P` → `BDDo: open`)
+2. Switch to the "Project" view
+3. Enter project name
+
+### Adding Tasks
+
+1. Open BDDo (`Cmd/Ctrl+Shift+P` → `BDDo: open`)
+2. Click on the "Plus" icon to add a new task
+3. Define task details
+
+### Defining Scenarios
+
+1. Click on a task to open its details
+2. Add scenarios
+3. Categorize each scenario (Happy Path, Edge Case, Error)
+
+Example:
+
+```gherkin inspired
+Feature: User Login
+Scenario: Successful login
+Type: Happy Path
+Given: User is authenticated. User clicks on login button
+Expected: User is redirected to the dashboard
+```
+
+## 🗺️ Roadmap
+
+### Planned Features
+
+- [ ] **Drag & Drop**: Reorder features and scenarios
+- [ ] **Advanced Filtering**: Filter by project, category, or status
+- [ ] **Rich Metadata**:
+  - Task complexity indicators
+  - GitHub issue links
+  - Priority levels
+- [ ] **Testing**: Unit and integration tests
+- [ ] **Export**: Generate test documentation
+- [ ] **Marketplace Publication**: Easy installation for all users
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+
+- Report bugs
+- Suggest features
+- Submit pull requests
+
+## 👤 Author
+
+Chihab Berkane - [GitHub](https://github.com/cberkane)
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Note**: BDDo is actively developed. Features and documentation are continuously updated.
