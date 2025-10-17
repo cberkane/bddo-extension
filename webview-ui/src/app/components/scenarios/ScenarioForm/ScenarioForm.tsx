@@ -18,25 +18,24 @@ type ScenarioFormProps = {
 
 const ScenarioForm = ({ featureUuid, scenario, action, onSuccess }: ScenarioFormProps) => {
     const ref = useRef<HTMLFormElement>(null);
-    const [isValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState<Map<string, string>>(new Map());
-
-    const typeOptions = Object.values(ScenarioType).map(v => ({
-        value: v,
-        label: v,
-    }));
-
-    const handleInput = () => {
-        if (!ref.current) return;
-
-        const currentErrors = getScenarioFormErrors(ref.current);
-        setErrors(currentErrors);
-        setIsValid(currentErrors.size === 0);
-    }
+    const typeOptions = Object.values(ScenarioType).map(v => ({ value: v, label: v }));
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        const valid = validate(event.currentTarget);
+        if (!valid) return;
+        submit(event);
+    }
+
+    const validate = (form: HTMLFormElement): boolean => {
+        const formErrors = getScenarioFormErrors(form);
+        setErrors(formErrors);
+        return formErrors.size === 0;
+    }
+
+    const submit = (event: React.FormEvent<HTMLFormElement>) => {
         const formData = new FormData(event.currentTarget);
         const data: Partial<Scenario> = {
             featureUuid,
@@ -45,25 +44,23 @@ const ScenarioForm = ({ featureUuid, scenario, action, onSuccess }: ScenarioForm
             given: formData.get("given") as string,
             expected: formData.get("expected") as string,
         };
-        
+
         if (scenario && action === ScenarioActionType.UPDATE_SCENARIO) {
             updateScenario(scenario!.uuid, data);
         } else {
             addScenario(data);
             resetForm();
         }
-
         onSuccess();
     }
 
     const resetForm = () => {
         ref.current?.reset();
-        setIsValid(false);
         setErrors(new Map());
     }
 
     return (
-        <form className={styles.form} ref={ref} onInput={handleInput} onSubmit={handleSubmit}>
+        <form className={styles.form} ref={ref} onSubmit={handleSubmit} noValidate>
             <fieldset className={styles.formGroup}>
                 <Select
                     name="type"
@@ -99,7 +96,7 @@ const ScenarioForm = ({ featureUuid, scenario, action, onSuccess }: ScenarioForm
                 error={errors.get("expected")}
             />
             <div className={styles.actions}>
-                <Button type="submit" disabled={!isValid}>
+                <Button type="submit">
                     Add Scenario
                 </Button>
             </div>

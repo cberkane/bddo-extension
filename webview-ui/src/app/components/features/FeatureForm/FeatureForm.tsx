@@ -21,7 +21,6 @@ const FeatureForm = ({
     action = FeatureActionType.ADD_FEATURE,
 }: FeaturePageFormProps) => {
     const ref = useRef<HTMLFormElement>(null);
-    const [isValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState<Map<string, string>>(new Map());
 
     const { projects } = useProjectLoad();
@@ -32,17 +31,22 @@ const FeatureForm = ({
         }))
     );
 
-    const handleInput = () => {
-        if (!ref.current) return;
-
-        const currentErrors = getFeatureFormErrors(ref.current);
-        setErrors(currentErrors);
-        setIsValid(currentErrors.size === 0);
-    };
-
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        
+        const valid = validate(event.currentTarget);
+        if (!valid) return;
+        sendData(event);
+    };
 
+    const validate = (form: HTMLFormElement): boolean => {
+        const formErrors = getFeatureFormErrors(form);
+        setErrors(formErrors);
+
+        return formErrors.size === 0;
+    };
+
+    const sendData = (event: React.FormEvent<HTMLFormElement>): void => {
         const formData = new FormData(event.currentTarget);
         const data: Partial<Feature> = {
             title: formData.get("title") as string,
@@ -58,18 +62,16 @@ const FeatureForm = ({
             addFeature(data);
             resetForm();
         }
-
         onSuccess();
     };
 
     const resetForm = () => {
         ref.current?.reset();
-        setIsValid(false);
         setErrors(new Map());
     };
 
     return (
-        <form className={styles.form} ref={ref} onInput={handleInput} onSubmit={handleSubmit}>
+        <form className={styles.form} ref={ref} onSubmit={handleSubmit} noValidate>
             <InputText
                 name="title"
                 label="Title"
@@ -86,7 +88,7 @@ const FeatureForm = ({
                 error={errors.get("projectUuid")}
             />
             <div className={styles.actions}>
-                <Button type="submit" disabled={!isValid}>
+                <Button type="submit">
                     {action === FeatureActionType.UPDATE_FEATURE ? "Update Task" : "Add Task"}
                 </Button>
             </div>

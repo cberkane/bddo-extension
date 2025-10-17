@@ -19,20 +19,23 @@ const ProjectForm = ({
 	action = ProjectActionType.ADD_PROJECT,
 }: ProjectFormProps) => {
 	const ref = useRef<HTMLFormElement>(null);
-	const [isValid, setIsValid] = useState(false);
 	const [errors, setErrors] = useState<Map<string, string>>(new Map());
-
-	const handleInput = () => {
-		if (!ref.current) return;
-
-		const formErrors = getProjectFormErrors(ref.current);
-		setErrors(formErrors);
-		setIsValid(formErrors.size === 0);
-	};
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
+		const valid = validate(event.currentTarget);
+		if (!valid) return;
+		submit(event);
+	};
+
+	const validate = (form: HTMLFormElement): boolean => {
+		const formErrors = getProjectFormErrors(form);
+		setErrors(formErrors);
+		return formErrors.size === 0;
+	};
+
+	const submit = (event: React.FormEvent<HTMLFormElement>) => {
 		const formData = new FormData(event.currentTarget);
 		const data: Partial<Project> = {
 			name: formData.get("name") as string,
@@ -41,26 +44,20 @@ const ProjectForm = ({
 		if (action === ProjectActionType.ADD_PROJECT) {
 			data.createdAt = new Date();
 			addProject(data);
-
-			event.currentTarget.reset();
-			setIsValid(false);
-			setErrors(new Map());
-		}
-
-		if (action === ProjectActionType.UPDATE_PROJECT && project) {
+			resetForm();
+		} else if (action === ProjectActionType.UPDATE_PROJECT && project) {
 			updateProject(project.uuid, data);
 		}
-
 		onSuccess();
 	};
 
+	const resetForm = () => {
+		ref.current?.reset();
+		setErrors(new Map());
+	};
+
 	return (
-		<form
-			ref={ref}
-			className={styles.form}
-			onSubmit={handleSubmit}
-			onInput={handleInput}
-		>
+		<form ref={ref} className={styles.form} onSubmit={handleSubmit} noValidate>
 			<InputText
 				name="name"
 				label="Project Name"
@@ -69,7 +66,7 @@ const ProjectForm = ({
 				required={true}
 				error={errors.get("name")}
 			/>
-			<Button type="submit" disabled={!isValid}>
+			<Button type="submit">
 				{action === ProjectActionType.UPDATE_PROJECT ? "Update Folder" : "Add Folder"}
 			</Button>
 		</form>
