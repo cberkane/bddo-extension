@@ -43,9 +43,18 @@ export class ProjectsController {
     }
 
 	private deleteProject(projectUuid: string): void {
-		const response = this.projectsService.removeProject(projectUuid);
-		this.featuresService.handleProjectDeletion(projectUuid);
-		this.sendResponse(response);
+		try {
+			const response = this.projectsService.removeProject(projectUuid);
+			this.featuresService.handleProjectDeletion(projectUuid);
+			this.sendResponse(response);
+		} catch (error) {
+			if (error instanceof Error) {
+				this.sendResponse({
+					success: false,
+					error: error.message,
+				});
+			}
+		}
 	}
 
 	private sendResponse(response: Response<Project[]>): void {
