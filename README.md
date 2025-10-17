@@ -11,10 +11,20 @@ A VSCode extension for managing development tasks using Gherkin syntax (BDD - Be
 BDDo helps developers organize their tasks and test scenarios using an inspired version of the Given-When-Then syntax from Behavior-Driven Development. Manage your features, tasks, and test cases directly within VSCode.
 
 
-![BDDo: add task demo](./docs/demo_feature_add.gif)
+
+![BDDo: add task demo](./docs/task_add_demo.gif)
 
 
-![BDDo: add folder demo](./docs/demo_project_add.gif)
+![BDDo: add folder demo](./docs/folder_add_demo.gif)
+
+
+![BDDo: add valid scenario demo](./docs/scenario_add_demo_valid.gif)
+
+
+![BDDo: add error scenario demo](./docs/scenario_add_demo_error.gif)
+
+
+![BDDo: complete task demo](./docs/scenario_add_demo_complete.gif)
 
 
 ## ✨ Features
