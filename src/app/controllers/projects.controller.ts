@@ -5,14 +5,17 @@ import { ProjectsService } from "@app/services/projects.service";
 import { Message } from "@app/types/message.type";
 import { Project, ProjectActionType } from "@app/types/project.type";
 import { Response } from "@app/types/response.type";
+import { FeaturesService } from "@app/services/features.service";
 
 export class ProjectsController {
 	private panel: vscode.WebviewPanel;
 	private projectsService: ProjectsService;
+	private featuresService: FeaturesService;
 
 	constructor(panel: vscode.WebviewPanel) {
 		this.panel = panel;
 		this.projectsService = Inject.getProjectsService();
+		this.featuresService = Inject.getFeaturesService();
 	}
 
     handle(message: Message<any>): void {
@@ -39,8 +42,9 @@ export class ProjectsController {
         this.sendResponse(response);
     }
 
-	private deleteProject(projectId: string): void {
-		const response = this.projectsService.removeProject(projectId);
+	private deleteProject(projectUuid: string): void {
+		const response = this.projectsService.removeProject(projectUuid);
+		this.featuresService.handleProjectDeletion(projectUuid);
 		this.sendResponse(response);
 	}
 

@@ -5,14 +5,17 @@ import { FeaturesService } from "@app/services/features.service";
 import { Feature, FeatureActionType } from "@app/types/features.type";
 import { Message } from "@app/types/message.type";
 import { Response } from "@app/types/response.type";
+import { ScenariosService } from "@app/services/scenarios.service";
 	
 export class FeaturesController {
 	private panel: vscode.WebviewPanel;
 	private featuresService: FeaturesService;
+	private scenariosService: ScenariosService;
 
 	constructor(panel: vscode.WebviewPanel) {
 		this.panel = panel;
 		this.featuresService = Inject.getFeaturesService();
+		this.scenariosService = Inject.getScenariosService();
 	}
 
 	handle(message: Message<any>): void {
@@ -49,6 +52,7 @@ export class FeaturesController {
 
 	private deleteFeature(uuid: string): void {
 		const response = this.featuresService.deleteFeature(uuid);
+		this.scenariosService.handleFeatureDeletion(uuid);
 		this.sendResponse(response);
 	}
 

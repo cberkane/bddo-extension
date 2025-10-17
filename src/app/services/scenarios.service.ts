@@ -101,4 +101,16 @@ export class ScenariosService extends StorageService {
 			};
 		}
 	}
+
+	handleFeatureDeletion(uuid: string): void {
+		try {
+			const file = this.readJsonData<ScenarioFile>(this.fileName);
+			const updatedScenarios = file.scenarios.filter(s => s.featureUuid !== uuid);
+			file.scenarios = updatedScenarios;
+			this.saveJsonData<ScenarioFile>(this.fileName, file);
+		} catch (error) {
+			vscode.window.showErrorMessage("Failed to handle task deletion");
+			throw new Error("Failed to delete scenarios after task deletion");
+		}
+	}
 }

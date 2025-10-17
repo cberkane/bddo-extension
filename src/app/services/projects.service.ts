@@ -5,6 +5,7 @@ import { StorageService } from "@app/services/storage.service";
 import { ProjectFile, Project, ProjectData } from "@app/types/project.type";
 import { Response } from "@app/types/response.type";
 
+// Important: Projects are named "folders" in the user interface
 export class ProjectsService extends StorageService {
 	
 	private fileName: string;
@@ -28,10 +29,10 @@ export class ProjectsService extends StorageService {
 				success: true,
 			};
 		} catch (error) {
-			vscode.window.showErrorMessage("Failed to load projects");
+			vscode.window.showErrorMessage("Failed to load folders");
 			return {
 				success: false,
-				error: "Failed to load the projects",
+				error: "Failed to load the folders",
 			};
 		}
 	}
@@ -41,10 +42,10 @@ export class ProjectsService extends StorageService {
 			const file = this.readJsonData<ProjectFile>(this.fileName);
 			const projectExists = file.projects.find((p) => p.name === data.name);
 			if (projectExists) {
-				vscode.window.showErrorMessage("Project with the same name already exists");
+				vscode.window.showErrorMessage("Folder with the same name already exists");
 				return {
 					success: false,
-					error: "Project with the same name already exists",
+					error: "Folder with the same name already exists",
 				};
 			}
 
@@ -57,18 +58,18 @@ export class ProjectsService extends StorageService {
 				success: true,
 			};
 		} catch (error) {
-			vscode.window.showErrorMessage("Failed to save project");
+			vscode.window.showErrorMessage("Failed to save folder");
 			return {
 				success: false,
-				error: "Failed to save the new project",
+				error: "Failed to save the new folder",
 			};
 		}
 	}
 
-	removeProject(projectId: string): Response<Project[]> {
+	removeProject(uuid: string): Response<Project[]> {
 		try {
 			const file = this.readJsonData<ProjectFile>(this.fileName);
-			const projects = file.projects.filter((p) => p.uuid !== projectId);
+			const projects = file.projects.filter((p) => p.uuid !== uuid);
 			file.projects = projects;
 			this.saveJsonData<ProjectFile>(this.fileName, file);
 			return {
@@ -76,10 +77,10 @@ export class ProjectsService extends StorageService {
 				success: true,
 			};
 		} catch (error) {
-			vscode.window.showErrorMessage("Failed to remove project");
+			vscode.window.showErrorMessage("Failed to remove folder");
 			return {
 				success: false,
-				error: "Failed to remove the project",
+				error: "Failed to remove the folder",
 			};
 		}
 	}

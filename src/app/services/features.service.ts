@@ -5,6 +5,7 @@ import { StorageService } from "@app/services/storage.service";
 import { Feature, FeatureData, FeatureFile } from "@app/types/features.type";
 import { Response } from "@app/types/response.type";
 
+// Important: Features are named "tasks" in the user interface
 export class FeaturesService extends StorageService {
 	private fileName: string;
 
@@ -28,10 +29,10 @@ export class FeaturesService extends StorageService {
 				data: features,
 			};
 		} catch (error) {
-			vscode.window.showErrorMessage("An error occurred while retrieving features");
+			vscode.window.showErrorMessage("An error occurred while retrieving tasks");
 			return {
 				success: false,
-				error: "Failed to load the features",
+				error: "Failed to load the tasks",
 			};
 		}
 	}
@@ -49,10 +50,10 @@ export class FeaturesService extends StorageService {
 				data: file.features,
 			};
 		} catch (error) {
-			vscode.window.showErrorMessage("An error occurred while saving the feature");
+			vscode.window.showErrorMessage("An error occurred while saving the task");
 			return {
 				success: false,
-				error: "Failed to save the new feature",
+				error: "Failed to save the new task",
 			};
 		}
 	}
@@ -64,7 +65,7 @@ export class FeaturesService extends StorageService {
 			if (index === -1) {
 				return {
 					success: false,
-					error: `Feature with uuid ${uuid} not found`,
+					error: `Task with uuid ${uuid} not found`,
 				};
 			}
 
@@ -75,10 +76,10 @@ export class FeaturesService extends StorageService {
 				data: file.features,
 			};
 		} catch (error) {
-			vscode.window.showErrorMessage("Failed to update feature");
+			vscode.window.showErrorMessage("Failed to update the task");
 			return {
 				success: false,
-				error: "Failed to update the feature",
+				error: "Failed to update the task",
 			};
 		}
 	}
@@ -94,11 +95,26 @@ export class FeaturesService extends StorageService {
 				success: true,
 			};
 		} catch (error) {
-			vscode.window.showErrorMessage("Failed to delete feature");
+			vscode.window.showErrorMessage("Failed to delete the task");
 			return {
 				success: false,
-				error: "Failed to delete the feature",
+				error: "Failed to delete the task",
 			};
+		}
+	}
+
+	handleProjectDeletion(projectUuid: string): void {
+		try {
+			const file = this.readJsonData<FeatureFile>(this.fileName);
+			file.features.forEach(f => {
+				if (f.projectUuid === projectUuid) {
+					f.projectUuid = "";
+				}
+			});
+			this.saveJsonData<FeatureFile>(this.fileName, file);
+		} catch (error) {
+			vscode.window.showErrorMessage("Failed to update tasks after folder deletion");
+			throw new Error("Failed to update tasks after folder deletion");
 		}
 	}
 }
