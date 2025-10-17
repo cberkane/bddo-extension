@@ -4,7 +4,7 @@ import styles from "./FeatureForm.module.css";
 import Button from "@/app/components/core/Button/Button";
 import InputText from "@/app/components/core/InputText/InputText";
 import Select from "@/app/components/core/Select/Select";
-import { getFormErrors } from "@/app/helpers/features/featureForm";
+import { getFeatureFormErrors } from "@/app/helpers/features/featureForm";
 import { addFeature, updateFeature } from "@/app/helpers/features/featureMessage";
 import useProjectLoad from "@/app/hooks/useProjectLoad";
 import { FeatureActionType, type Feature } from "@/app/types/feature";
@@ -35,7 +35,7 @@ const FeatureForm = ({
     const handleInput = () => {
         if (!ref.current) return;
 
-        const currentErrors = getFormErrors(ref.current);
+        const currentErrors = getFeatureFormErrors(ref.current);
         setErrors(currentErrors);
         setIsValid(currentErrors.size === 0);
     };
@@ -73,22 +73,21 @@ const FeatureForm = ({
             <InputText
                 name="title"
                 label="Title"
-                placeholder="Feature title"
+                placeholder="Task title"
                 defaultValue={feature?.title}
                 required={true}
-                minLength={3}
                 error={errors.get("title")}
             />
             <Select
                 name="projectUuid"
-                label="Project"
-                placeholder="Select a project..."
+                label="Folder"
+                placeholder="Select a folder"
                 options={projectOptions}
                 error={errors.get("projectUuid")}
             />
             <div className={styles.actions}>
                 <Button type="submit" disabled={!isValid}>
-                    {action === FeatureActionType.UPDATE_FEATURE ? "Update Feature" : "Add Feature"}
+                    {action === FeatureActionType.UPDATE_FEATURE ? "Update Task" : "Add Task"}
                 </Button>
             </div>
         </form>

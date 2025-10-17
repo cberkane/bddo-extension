@@ -3,7 +3,7 @@ import styles from "./ProjectForm.module.css";
 
 import Button from "@/app/components/core/Button/Button";
 import InputText from "@/app/components/core/InputText/InputText";
-import { getFormErrors } from "@/app/helpers/projects/projectForm";
+import { getProjectFormErrors } from "@/app/helpers/projects/projectForm";
 import { addProject, updateProject } from "@/app/helpers/projects/projectMessage";
 import { ProjectActionType, type Project } from "@/app/types/project";
 
@@ -25,7 +25,7 @@ const ProjectForm = ({
 	const handleInput = () => {
 		if (!ref.current) return;
 
-		const formErrors = getFormErrors(ref.current);
+		const formErrors = getProjectFormErrors(ref.current);
 		setErrors(formErrors);
 		setIsValid(formErrors.size === 0);
 	};
@@ -67,11 +67,10 @@ const ProjectForm = ({
 				placeholder="Enter project name"
 				defaultValue={project?.name}
 				required={true}
-				minLength={3}
 				error={errors.get("name")}
 			/>
 			<Button type="submit" disabled={!isValid}>
-				{action === ProjectActionType.UPDATE_PROJECT ? "Update Project" : "Add Project"}
+				{action === ProjectActionType.UPDATE_PROJECT ? "Update Folder" : "Add Folder"}
 			</Button>
 		</form>
 	);

@@ -7,7 +7,6 @@ import { ViewChangeContext } from "@/app/contexts/core/ViewChangeContext";
 import { deleteProject } from "@/app/helpers/projects/projectMessage";
 import type { Project } from "@/app/types/project";
 
-import Edit from "@/assets/svg/edit.svg?react";
 import Folder from "@/assets/svg/folder.svg?react";
 import Trash from "@/assets/svg/trash.svg?react";
 
@@ -20,7 +19,6 @@ type ProjectItemProps = {
 
 const ProjectItem = ({ generic, project, key }: ProjectItemProps) => {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-    const [showEditDialog, setShowEditDialog] = useState(false);
     const { setView } = useContext(ViewChangeContext);
 
     const handleClick = () => {
@@ -30,11 +28,6 @@ const ProjectItem = ({ generic, project, key }: ProjectItemProps) => {
             setView({ path: 'features', params: {} });
         }
     }
-
-    const handleEdit = (event: React.MouseEvent) => {
-        event.stopPropagation();
-        setShowEditDialog(true);
-    };
 
     const handleDelete = (event: React.MouseEvent) => {
         event.stopPropagation();
@@ -59,7 +52,6 @@ const ProjectItem = ({ generic, project, key }: ProjectItemProps) => {
                         </div>
                     </section>
                     {!generic && <aside className={styles.actions}>
-                        <Edit className={styles.icon} onClick={handleEdit} />
                         <Trash className={styles.icon} onClick={handleDelete} />
                     </aside>}
                 </div>
@@ -68,16 +60,13 @@ const ProjectItem = ({ generic, project, key }: ProjectItemProps) => {
                 <div className={styles.deleteDialog}>
                     <div className={styles.content}>
                         <h2>Confirm Deletion</h2>
-                        <p>Are you sure you want to permanently delete this project?</p>
+                        <p>Are you sure you want to permanently delete this folder?</p>
                     </div>
                     <div className={styles.actions}>
                         <Button variant="outline" onClick={() => setShowDeleteDialog(false)}>Cancel</Button>
                         <Button onClick={() => onDeleteProject(project?.uuid)}>Delete</Button>
                     </div>
                 </div>
-            </Dialog>
-            <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
-                <p>Edit project functionality to be implemented.</p>
             </Dialog>
         </>
     );

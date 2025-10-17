@@ -33,15 +33,15 @@ const App = () => {
                 <div>
                     {switcherVisible &&
                         <NavSwitcher
-                            title={view.path === "features" ? "Projects" : "Features"}
-                            indicator={view.path === "features" ? "down" : "up"}
+                            title={view.path === "projects" ? "Tasks" : "Folders"}
+                            indicator={view.path === "projects" ? "up" : "down"}
                             onClick={switchView}
                         />
                     }
                     {navBackVisible &&
                         <div className={styles.backNavSpacer} onClick={goBack}>
                             <Back className={styles.backIcon} />
-                            <span>Back to Features</span>
+                            <span>Back to tasks</span>
                         </div>
                     }
                 </div>

@@ -29,7 +29,7 @@ const FeaturePage = ({ projectUuid }: FeaturePageProps) => {
 	return (
 		<>
 			<>
-				<Header className={styles.header} title="Features" icon={<Desktop />} />
+				<Header className={styles.header} title="Tasks" icon={<Desktop />} />
 				<FeatureList features={filteredFeatures} />
 				<Button className={styles.fab} variant="rounded" onClick={handleClick}>
 					<Plus className={styles.icon} />

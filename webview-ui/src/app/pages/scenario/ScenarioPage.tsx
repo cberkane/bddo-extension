@@ -38,7 +38,7 @@ const ScenarioPage = ({ feature }: ScenarioPageProps) => {
                 {filteredScenarios.length > 0 &&
                     <div className={styles.subHeader}>
                         <h2>
-                            <span>Feature:</span> {feature.title}
+                            <span>Task:</span> {feature.title}
                         </h2>
                         <p className={styles.info}>completed scenarios: {completedCount} / {count}</p>
                         <div className={styles.infoGroup}>

@@ -1,29 +1,22 @@
+import { getFormErrors } from "@/app/helpers/core/form";
+
 const getCustomError = (input: HTMLInputElement): string | undefined => {
 	switch (input.name) {
-		case "type":
-			if (input.validity.valueMissing) return "Le type est requis.";
-			break;
 		case "title":
-			if (input.validity.valueMissing) return "Le titre est requis.";
-			if (input.value.trim().length < 3) return "Le titre doit contenir au moins 3 caractères.";
+			if (input.validity.valueMissing) return "title field is required.";
+			if (input.value.trim().length < 5) return "title must be at least 5 characters."
+			break;
+		case "given":
+			if (input.validity.valueMissing) return "given field is required.";
 			break;
         case "expected":
-			if (input.validity.valueMissing) return "Le résultat attendu est requis.";
+			if (input.validity.valueMissing) return "expected field is required.";
 			break;
 		default:
 			return "";
 	}
 };
 
-// TODO: factorize with featureForm
-export const getFormErrors = (form: HTMLFormElement): Map<string, string> => {
-	const errors = new Map<string, string>();
-    
-    const formData = new FormData(form);
-	for (const [key] of formData.entries()) {
-		const input = form.elements.namedItem(key) as HTMLInputElement;
-		const error = getCustomError(input);
-		if (error) errors.set(key, error);
-	}
-	return errors;
+export const getScenarioFormErrors = (form: HTMLFormElement): Map<string, string> => {
+	return getFormErrors(form, getCustomError);
 };

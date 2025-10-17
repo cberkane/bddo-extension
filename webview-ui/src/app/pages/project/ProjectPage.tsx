@@ -18,11 +18,11 @@ const ProjectPage = () => {
     return (
         <>
             <>
-                <Header title="Projects" icon={<Edit />} className={styles.header} />
+                <Header title="Folders" icon={<Edit />} className={styles.header} />
                 <ProjectList projects={projects} />
                 <div className={styles.actions}>
                     <Button onClick={() => setIsFormOpen(true)}>
-                        New Project
+                        New Folder
                     </Button>
                 </div>
             </>

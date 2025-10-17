@@ -91,7 +91,7 @@ const FeatureItem = ({ feature }: FeatureItemProps) => {
                 <div className={styles.deleteDialog}>
                     <div className={styles.content}>
                         <h2>Confirm Deletion</h2>
-                        <p>Are you sure you want to permanently delete this feature?</p>
+                        <p>Are you sure you want to permanently delete this task?</p>
                     </div>
                     <div className={styles.actions}>
                         <Button variant="outline" onClick={() => setShowDeleteDialog(false)}>Cancel</Button>

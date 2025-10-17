@@ -24,7 +24,7 @@ const FeatureList = ({ features }: FeatureListProps) => {
                 <div className={styles.emptyState}>
                     <div>
                         <h2>No features found.</h2>
-                        <p>Consider adding some, if it is a new project.</p>
+                        <p>Consider adding some, if it is a new folder.</p>
                     </div>
                 </div>
             }

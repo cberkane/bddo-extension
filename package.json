@@ -23,12 +23,12 @@
 				"bddo.featuresFilename": {
 					"type": "string",
 					"default": "bddo-data.json",
-					"description": "The name of the JSON file where BDD features and scenarios are stored."
+					"description": "The name of the JSON file where BDD tasks are stored."
 				},
 				"bddo.projectsFilename": {
 					"type": "string",
 					"default": "bddo-project.json",
-					"description": "The name of the JSON file where project settings are stored."
+					"description": "The name of the JSON file where folders settings are stored."
 				},
 				"bddo.scenariosFilename": {
 					"type": "string",

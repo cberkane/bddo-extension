@@ -5,7 +5,7 @@ import Button from "@/app/components/core/Button/Button";
 import InputText from "@/app/components/core/InputText/InputText";
 import InputTextArea from "@/app/components/core/InputTextArea/InputTextArea";
 import Select from "@/app/components/core/Select/Select";
-import { getFormErrors } from "@/app/helpers/scenarios/scenarioForm";
+import { getScenarioFormErrors } from "@/app/helpers/scenarios/scenarioForm";
 import { addScenario, updateScenario } from "@/app/helpers/scenarios/scenarioMessage";
 import { ScenarioActionType, ScenarioType, type Scenario } from "@/app/types/scenario";
 
@@ -29,7 +29,7 @@ const ScenarioForm = ({ featureUuid, scenario, action, onSuccess }: ScenarioForm
     const handleInput = () => {
         if (!ref.current) return;
 
-        const currentErrors = getFormErrors(ref.current);
+        const currentErrors = getScenarioFormErrors(ref.current);
         setErrors(currentErrors);
         setIsValid(currentErrors.size === 0);
     }
@@ -77,8 +77,8 @@ const ScenarioForm = ({ featureUuid, scenario, action, onSuccess }: ScenarioForm
                     name="title"
                     label="Title"
                     placeholder="Enter scenario title"
-                    required={true}
                     defaultValue={scenario?.title}
+                    required={true}
                     error={errors.get("title")}
                 />
             </fieldset>
@@ -86,16 +86,16 @@ const ScenarioForm = ({ featureUuid, scenario, action, onSuccess }: ScenarioForm
                 name="given"
                 label="Given"
                 placeholder="Enter the initial context"
-                required={true}
                 defaultValue={scenario?.given}
+                required={true}
                 error={errors.get("given")}
             />
             <InputTextArea
                 name="expected"
                 label="Expected"
                 placeholder="Enter the expected outcome"
-                required={true}
                 defaultValue={scenario?.expected}
+                required={true}
                 error={errors.get("expected")}
             />
             <div className={styles.actions}>
