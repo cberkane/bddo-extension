@@ -10,14 +10,15 @@ import Header from "@/app/components/core/Header/Header";
 
 import Plus from "@/assets/svg/plus.svg?react";
 import Desktop from "@/assets/svg/desktop.svg?react";
+import PageWrapper from "@/app/components/core/PageWrapper/PageWrapper";
 
 type FeaturePageProps = {
 	projectUuid?: string;
 };
 
 const FeaturePage = ({ projectUuid }: FeaturePageProps) => {
+	const { features, loading } = useFeatureLoad();
 	const [isAddFormOpen, setIsAddFormOpen] = useState(false);
-	const { features } = useFeatureLoad();
 	const filteredFeatures = projectUuid
 		? features.filter((feature) => feature.projectUuid === projectUuid)
 		: features;
@@ -27,20 +28,22 @@ const FeaturePage = ({ projectUuid }: FeaturePageProps) => {
 	};
 
 	return (
-		<>
+		<PageWrapper loading={loading}>
 			<>
-				<Header className={styles.header} title="Tasks" icon={<Desktop />} />
-				<FeatureList features={filteredFeatures} onAddTask={handleClick} />
-				{filteredFeatures.length > 0 &&
-					<Button className={styles.fab} variant="rounded" onClick={handleClick}>
-						<Plus className={styles.icon} />
-					</Button>
-				}
+				<>
+					<Header className={styles.header} title="Tasks" icon={<Desktop />} />
+					<FeatureList features={filteredFeatures} onAddTask={handleClick} />
+					{filteredFeatures.length > 0 &&
+						<Button className={styles.fab} variant="rounded" onClick={handleClick}>
+							<Plus className={styles.icon} />
+						</Button>
+					}
+				</>
+				<Dialog open={isAddFormOpen} onClose={() => setIsAddFormOpen(false)}>
+					<FeatureForm onSuccess={() => setIsAddFormOpen(false)} />
+				</Dialog>
 			</>
-			<Dialog open={isAddFormOpen} onClose={() => setIsAddFormOpen(false)}>
-				<FeatureForm onSuccess={() => setIsAddFormOpen(false)} />
-			</Dialog>
-		</>
+		</PageWrapper>
 	);
 };
 

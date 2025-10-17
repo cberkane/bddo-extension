@@ -4,21 +4,25 @@ import { type Scenario, ScenarioActionType } from "@/app/types/scenario";
 
 const useScenarioLoad = () => {
     const [scenarios, setScenarios] = useState<Scenario[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        setLoading(true);
         window.vscode.postMessage({ command: ScenarioActionType.LOAD_SCENARIOS_REQUEST });
         const handleMessage = (event: MessageEvent) => {
             if (event.data.command === ScenarioActionType.LOAD_SCENARIOS_RESPONSE)
                 setScenarios(event.data.scenarios);
             if (event.data.command === ScenarioActionType.LOAD_SCENARIOS_ERROR)
                 setError(event.data.error);
-        }
+            setLoading(false);
+        };
+
         window.addEventListener("message", handleMessage);
         return () => window.removeEventListener("message", handleMessage);
     }, []);
 
-    return { scenarios, error };
+    return { scenarios, loading, error };
 }
 
 export default useScenarioLoad;
