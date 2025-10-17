@@ -76,7 +76,7 @@ const FeatureItem = ({ feature }: FeatureItemProps) => {
                                 <p className={styles.info}>{project ? project.name : "All"}</p>
                             </div>
                             <div className={styles.dateInfo}>
-                                <p className={styles.info}> Last update at {feature.updatedAt ? formatDate(feature.updatedAt) : formatDate(feature.createdAt)}</p>
+                                <p className={styles.info}>{feature.updatedAt ? formatDate(feature.updatedAt) : formatDate(feature.createdAt)}</p>
                             </div>
                         </div>
                     </div>

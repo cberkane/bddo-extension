@@ -32,7 +32,7 @@ const ScenarioList = ({ scenarios, onAddScenario }: ScenarioListProps) => {
             {scenarios.length === 0 &&
                 <div className={styles.emptyState}>
                     <h2 className={styles.machin}>No scenarios added.</h2>
-                    <p>Consider adding some, if it is a new feature.</p>
+                    <p>Consider adding scenarios to this task.</p>
                     <Button onClick={onAddScenario}>
                         Add Scenario
                     </Button>

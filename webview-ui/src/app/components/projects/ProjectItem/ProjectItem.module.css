@@ -20,6 +20,12 @@
 	height: 32px;
 }
 
+.title {
+	font-size: 14px;
+	font-weight: 400;
+	color: var(--vscode-foreground);
+}
+
 .content {
 	display: flex;
 	flex-grow: 1;

@@ -16,27 +16,29 @@ type FeaturePageProps = {
 };
 
 const FeaturePage = ({ projectUuid }: FeaturePageProps) => {
-	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [isAddFormOpen, setIsAddFormOpen] = useState(false);
 	const { features } = useFeatureLoad();
 	const filteredFeatures = projectUuid
 		? features.filter((feature) => feature.projectUuid === projectUuid)
 		: features;
 
 	const handleClick = () => {
-		setIsFormOpen(true);
+		setIsAddFormOpen(true);
 	};
 
 	return (
 		<>
 			<>
 				<Header className={styles.header} title="Tasks" icon={<Desktop />} />
-				<FeatureList features={filteredFeatures} />
-				<Button className={styles.fab} variant="rounded" onClick={handleClick}>
-					<Plus className={styles.icon} />
-				</Button>
+				<FeatureList features={filteredFeatures} onAddTask={handleClick} />
+				{filteredFeatures.length > 0 &&
+					<Button className={styles.fab} variant="rounded" onClick={handleClick}>
+						<Plus className={styles.icon} />
+					</Button>
+				}
 			</>
-			<Dialog open={isFormOpen} onClose={() => setIsFormOpen(false)}>
-				<FeatureForm onSuccess={() => setIsFormOpen(false)} />
+			<Dialog open={isAddFormOpen} onClose={() => setIsAddFormOpen(false)}>
+				<FeatureForm onSuccess={() => setIsAddFormOpen(false)} />
 			</Dialog>
 		</>
 	);

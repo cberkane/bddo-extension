@@ -2,13 +2,15 @@
 import styles from "./FeatureList.module.css";
 
 import { type Feature } from "@/app/types/feature";
-import FeatureItem from "../FeatureItem/FeatureItem";
+import FeatureItem from "@/app/components/features/FeatureItem/FeatureItem";
+import Button from "@/app/components/core/Button/Button";
 
 type FeatureListProps = {
     features: Feature[];
+    onAddTask?: () => void;
 }
 
-const FeatureList = ({ features }: FeatureListProps) => {
+const FeatureList = ({ features, onAddTask }: FeatureListProps) => {
     return (
         <div className={styles.featureList}>
             {features.length > 0 &&
@@ -22,10 +24,11 @@ const FeatureList = ({ features }: FeatureListProps) => {
             }
             {features.length === 0 &&
                 <div className={styles.emptyState}>
-                    <div>
-                        <h2>No features found.</h2>
-                        <p>Consider adding some, if it is a new folder.</p>
-                    </div>
+                    <h2>No tasks found.</h2>
+                    <p>Click on the button below to add a new task.</p>
+                    <Button onClick={onAddTask}>
+                        Add Task
+                    </Button>
                 </div>
             }
         </div>

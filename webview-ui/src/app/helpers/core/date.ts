@@ -3,7 +3,7 @@ export const getFormattedDate = (date: string | undefined): string => {
 
     return new Date(date).toLocaleDateString(undefined, {
         year: 'numeric',
-        month: 'long',
+        month: 'numeric',
         day: 'numeric',
     });
 };

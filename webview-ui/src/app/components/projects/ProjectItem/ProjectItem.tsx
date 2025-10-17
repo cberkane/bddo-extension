@@ -48,7 +48,7 @@ const ProjectItem = ({ generic, project, key }: ProjectItemProps) => {
                     <Folder className={styles.folder} style={{ color: "#d7d348" }} />
                     <section className={styles.content}>
                         <div>
-                            <h3>{project ? project.name : "All"}</h3>
+                            <h3 className={styles.title}>{project ? project.name : "All"}</h3>
                         </div>
                     </section>
                     {!generic && <aside className={styles.actions}>
