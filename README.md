@@ -1,6 +1,6 @@
 # BDDo
 
-A VSCode extension for managing development tasks using Gherkin syntax (BDD - Behavior-Driven Development).
+A VSCode extension for managing tasks using an inspired version of Gherkin syntax (BDD - Behavior-Driven Development).
 
 ![VSCode](https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visual-studio-code)
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
@@ -8,56 +8,54 @@ A VSCode extension for managing development tasks using Gherkin syntax (BDD - Be
 
 ## 🎯 Overview
 
-BDDo helps developers organize their tasks and test scenarios using an inspired version of the Given-When-Then syntax from Behavior-Driven Development. Manage your features, tasks, and test cases directly within VSCode.
-
-
+BDDo helps developers organize their tasks and testing scenarios using an inspired version of the Given-When-Then syntax from the Behavior-Driven Development approach. Manage your features, tasks, and test cases directly within VSCode. You can create tasks, group them in folders, and define scenarios categorized as Happy Path, Edge cases, or Error cases.
 
 ![BDDo: add task demo](./docs/task_add_demo.gif)
 
-
 ![BDDo: add folder demo](./docs/folder_add_demo.gif)
-
 
 ![BDDo: add valid scenario demo](./docs/scenario_add_demo_valid.gif)
 
-
 ![BDDo: add error scenario demo](./docs/scenario_add_demo_error.gif)
 
-
 ![BDDo: complete task demo](./docs/scenario_add_demo_complete.gif)
-
 
 ## ✨ Features
 
 ### Current Implementation
 
-- **📁 Project Management**
+- **Project Management**
 
   - Create and delete folders
-  - Hierarchical organization of tasks
+  - Add tasks within folders for better organization
 
-- **✅ Task Management**
+- **Task Management**
 
   - Create, update, and delete tasks
-  - Associate tasks with projects or keep them standalone
+  - Mark tasks as complete or incomplete
 
-- **🧪 Scenario Definition**
+- **Scenario Definition**
 
   - Add, update, and delete scenarios for each task
-  - Use an inspired Gherkin syntax (given, expected)
-  - Categorize scenarios:
-    - Happy Path
-    - Edge Cases
-    - Error Handling
+  - Use a simplified version of Gherkin syntax (given, expected)
+  - Define scenario types:
+    - Happy Path : Standard successful flow
+    - Edge Cases : Uncommon or unexpected user behaviors
+    - Error Handling : System failures or error states
 
-- **🎨 User Interface**
-  - Clean, intuitive graphical interface
-  - Built with React for smooth interactions
-  - Integrated directly into VSCode
+  Example:
 
-## 🛠️ Tech Stack
+  ```gherkin inspired
+  Feature: User Login
+  Scenario: Successful login
+  Type: Happy Path
+  Given: User is authenticated. User clicks on login button
+  Expected: User is redirected to the dashboard
+  ```
 
-- **Frontend**: React 18
+## 🔷 Tech Stack
+
+- **Frontend**: a webview using React 18
 - **Language**: TypeScript
 - **Platform**: VSCode Extension API
 
@@ -81,56 +79,28 @@ npm install
 3. Launch in VSCode debugger:
 
    - Press `F5` or use the Debug panel
-   - Select "Launch Extension"
+   - Click on "Run Extension"
 
 4. Open BDDo:
-   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
+   - Go to the opened VSCode window
+   - Open the Command Palette (`Cmd/Ctrl+Shift+P`)
    - Type: `BDDo: open`
 
 ### Marketplace Installation
 
-_Coming soon - Extension will be published to VSCode Marketplace_
-
-## 📖 Usage
-
-### Creating a Project
-
-1. Open BDDo (`Cmd/Ctrl+Shift+P` → `BDDo: open`)
-2. Switch to the "Folder" view
-3. Enter folder name
-
-### Adding Tasks
-
-1. Open BDDo (`Cmd/Ctrl+Shift+P` → `BDDo: open`)
-2. Click on the "Plus" icon to add a new task
-3. Define task details
-
-### Defining Scenarios
-
-1. Click on a task to open its details
-2. Add scenarios
-3. Categorize each scenario (Happy Path, Edge Case, Error)
-
-Example:
-
-```gherkin inspired
-Feature: User Login
-Scenario: Successful login
-Type: Happy Path
-Given: User is authenticated. User clicks on login button
-Expected: User is redirected to the dashboard
-```
+_Coming soon - Extension will be published to VSCode Marketplace after further testing and refinement._
 
 ## 🗺️ Roadmap
 
 ### Planned Features
 
-- [ ] **Drag & Drop**: Reorder features and scenarios
-- [ ] **Advanced Filtering**: Filter by project, category, or status
+- [ ] **Drag & Drop**: to reorder features 
+- [ ] **Advanced Filtering**: to filter tasks and scenarios
 - [ ] **Rich Metadata**:
-  - Task complexity indicators
+  - Task complexity score
   - GitHub issue links
-  - Priority levels
+  - Priority levels (low, medium, high)
+- [ ] **Panel Integration**: for easier access within VSCode UI
 - [ ] **Testing**: Unit and integration tests
 - [ ] **Export**: Generate test documentation
 - [ ] **Marketplace Publication**: Easy installation for all users
@@ -139,13 +109,14 @@ Expected: User is redirected to the dashboard
 
 Contributions are welcome! Feel free to:
 
+- Test the extension
 - Report bugs
 - Suggest features
 - Submit pull requests
 
 ## 👤 Author
 
-Chihab Berkane - [GitHub](https://github.com/cberkane)
+Chihab Berkane
 
 ---
 
