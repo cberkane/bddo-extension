@@ -66,11 +66,6 @@ export class ActivityBarService {
 	processScenarioItem(item: { label: string; completed: boolean }): vscode.TreeItem {
 		const treeItem = new vscode.TreeItem(item.label, vscode.TreeItemCollapsibleState.None);
 		treeItem.id = item.label;
-		treeItem.command = {
-			command: "bddo.childClick",
-			title: "Child Clicked",
-			arguments: [item.label],
-		};
 		if (item.completed) {
 			treeItem.iconPath = new vscode.ThemeIcon("check", new vscode.ThemeColor("charts.green"));
 		} else {
