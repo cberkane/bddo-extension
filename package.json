@@ -14,6 +14,12 @@
 				"command": "bddo.open",
 				"category": "BDDo",
 				"title": "open"
+			},
+			{
+				"command": "bddo.refreshTreeView",
+				"category": "BDDo",
+				"title": "refresh",
+				"icon": "$(refresh)"
 			}
 		],
 		"configuration": {
@@ -36,6 +42,34 @@
 					"description": "The name of the JSON file where BDD scenarios are stored."
 				}
 			}
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "bddo-view-container",
+					"title": "BDDo tasks",
+					"icon": "src/assets/svg/icon.svg"
+				}
+			]
+		},
+		"views": {
+			"bddo-view-container": [
+				{
+					"id": "bddo-view",
+					"name": "",
+					"icon": "src/assets/svg/temp.svg"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "bddo.refreshTreeView",
+					"when": "view == bddo-view",
+					"group": "navigation",
+					"icon": "$(refresh)"
+				}
+			]
 		}
 	},
 	"scripts": {
